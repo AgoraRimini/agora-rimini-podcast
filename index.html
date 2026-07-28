@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b57a3">
+  <meta name="description" content="Agorà Rimini Podcast — I tre folli idealisti. Politica, società e storie dalla città.">
+  <title>Agorà Rimini Podcast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Agorà Rimini Podcast">
+      <img src="assets/logo.jpg" alt="Agorà Rimini Podcast">
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Apri menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigazione principale">
+      <a href="#home">Home</a>
+      <a href="#puntate">Puntate</a>
+      <a href="#articoli">Articoli</a>
+      <a href="#vignette">Vignette</a>
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+    <a class="social-link" href="https://x.com/AgoraRiminiPod" target="_blank" rel="noreferrer" aria-label="Agorà Rimini Podcast su X">
+      <span>𝕏</span> @AgoraRiminiPod
+    </a>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-art" role="img" aria-label="I tre conduttori di Agorà Rimini Podcast illustrati in stile manga davanti a Rimini"></div>
+      <div class="hero-copy">
+        <img class="hero-logo" src="assets/logo.jpg" alt="Agorà Rimini Podcast">
+        <p class="eyebrow">Un podcast. Una città. Mille idee.</p>
+        <h1>I tre folli idealisti.</h1>
+        <a class="button button-primary" href="#puntate">
+          <span class="play-icon">▶</span> Ascolta l’ultima puntata
+        </a>
+      </div>
+      <a class="scroll-cue" href="#puntate" aria-label="Vai alle puntate">↓</a>
+    </section>
+
+    <section id="puntate" class="section episode-section">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">In onda adesso</p>
+          <h2>Ascolta le nostre puntate</h2>
+        </div>
+        <a class="text-link" href="https://www.spreaker.com/podcast/agora-rimini-podcast--5748998" target="_blank" rel="noreferrer">Tutte le puntate ↗</a>
+      </div>
+      <div class="player-shell">
+        <iframe title="Agorà Rimini Podcast su Spreaker" src="https://widget.spreaker.com/player?show_id=5748998&theme=dark&playlist=show&playlist-continuous=false&autoplay=false&live-autoplay=false&chapters-image=true&episode_image_position=right&hide-logo=false&hide-likes=false&hide-comments=false&hide-sharing=false&hide-download=true" width="100%" height="360" frameborder="0" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <section id="articoli" class="section editorial-section">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Idee senza filtro</p>
+          <h2>I nostri articoli</h2>
+        </div>
+        <a class="text-link" href="#">Leggi tutti →</a>
+      </div>
+      <div class="article-grid">
+        <article class="article-card article-card-featured">
+          <div class="card-visual visual-democrazia"><span>01</span></div>
+          <div class="card-copy">
+            <span class="tag">Politica</span>
+            <h3>Democrazia a orologeria</h3>
+            <p>Quando il popolo diventa opinione pubblica e la politica smette di ascoltare.</p>
+            <small>di Paolo · Editoriale</small>
+          </div>
+        </article>
+        <article class="article-card">
+          <div class="card-visual visual-comfort"><span>02</span></div>
+          <div class="card-copy">
+            <span class="tag">Società</span>
+            <h3>Comfort zone: la prigione più comoda</h3>
+            <p>Non ci tengono chiusi fuori: ci tengono buoni dentro.</p>
+            <small>di Fabio · Riflessioni</small>
+          </div>
+        </article>
+        <article class="article-card">
+          <div class="card-visual visual-rimini"><span>03</span></div>
+          <div class="card-copy">
+            <span class="tag">Rimini</span>
+            <h3>Rimini non è solo mare</h3>
+            <p>Una città che pensa, resiste e non si svende.</p>
+            <small>di Ago · Territorio</small>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="vignette" class="section vignette-section">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Satira illustrata</p>
+          <h2>Le nostre vignette</h2>
+        </div>
+        <a class="text-link" href="#">Vedi tutte →</a>
+      </div>
+      <div class="vignette-grid">
+        <div class="vignette"><div class="ink-circle"></div><p>La realtà cambia canale.</p></div>
+        <div class="vignette"><div class="ink-face">?</div><p>Promesse in alta definizione.</p></div>
+        <div class="vignette"><div class="ink-world">◎</div><p>Il mondo visto dal basso.</p></div>
+        <div class="vignette"><div class="ink-rain">///</div><p>Previsioni: piovono opinioni.</p></div>
+      </div>
+    </section>
+
+    <section id="chi-siamo" class="about">
+      <div class="about-intro">
+        <p class="kicker kicker-light">Chi siamo</p>
+        <h2>Tre voci.<br>Una sola Agorà.</h2>
+        <p>Paolo, Fabio e Ago. Tre amici, tre punti di vista, nessuna voglia di restare in silenzio. Parliamo di politica, società e Rimini con ironia, spirito critico e libertà.</p>
+        <a class="button button-light" href="#contatti">Entra nell’Agorà</a>
+      </div>
+      <div class="hosts">
+        <article>
+          <span class="host-number">01</span>
+          <h3>Paolo</h3>
+          <p>Diretto, istintivo, combattivo. Il motore idealista del gruppo.</p>
+        </article>
+        <article>
+          <span class="host-number">02</span>
+          <h3>Fabio</h3>
+          <p>Riflessivo, sarcastico, razionale. Analizza, collega, smonta.</p>
+        </article>
+        <article>
+          <span class="host-number">03</span>
+          <h3>Ago</h3>
+          <p>Pratico, ironico, leale. Dice le cose come stanno.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contatti" class="site-footer">
+    <div class="footer-brand">
+      <img src="assets/logo.jpg" alt="">
+      <p>I tre folli idealisti.</p>
+    </div>
+    <div class="footer-cta">
+      <p>Hai una storia, un’idea o qualcosa da dire?</p>
+      <a href="mailto:info@agorariminipodcast.it">Scrivici →</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Agorà Rimini Podcast</span>
+      <span>Rimini · Italia</span>
+      <a href="https://www.spreaker.com/podcast/agora-rimini-podcast--5748998" target="_blank" rel="noreferrer">Spreaker ↗</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
