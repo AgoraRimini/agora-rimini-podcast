@@ -1,0 +1,284 @@
+.thought-section {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(20,107,193,.48), transparent 28%),
+    linear-gradient(135deg, #050c13 0%, #082643 55%, #06366d 100%);
+}
+.thought-section::before {
+  content: "PENSA";
+  position: absolute;
+  right: -2vw;
+  top: 30px;
+  color: rgba(255,255,255,.035);
+  font: 800 clamp(120px, 22vw, 340px)/.8 "Barlow Condensed", sans-serif;
+  letter-spacing: -.06em;
+  pointer-events: none;
+}
+.thought-heading {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 44px;
+}
+.thought-heading .kicker { color: #78bdff; }
+.thought-heading h2 { max-width: 760px; }
+.thought-heading > p:last-child {
+  max-width: 430px;
+  margin: 0 0 3px;
+  color: #c7d9e9;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.quote-stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+  min-height: 570px;
+  background: #fff;
+  box-shadow: 0 34px 90px rgba(0,0,0,.34);
+}
+.quote-visual {
+  position: relative;
+  min-height: 570px;
+  overflow: hidden;
+  background: #dce5ed;
+}
+.quote-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  inset: 0;
+  padding: clamp(18px, 3vw, 42px);
+  transition: opacity .28s ease, transform .4s ease;
+}
+.quote-stage.is-changing .quote-visual img { opacity: 0; transform: scale(.985); }
+.quote-counter {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  z-index: 2;
+  padding: 8px 11px;
+  color: #fff;
+  background: var(--blue);
+  font: 800 12px/1 "Barlow Condensed", sans-serif;
+  letter-spacing: .12em;
+}
+.quote-info {
+  padding: clamp(30px, 4vw, 58px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--ink);
+  background:
+    repeating-linear-gradient(145deg, transparent 0 25px, rgba(7,20,33,.035) 26px 27px),
+    #fff;
+}
+.quote-author-label {
+  margin: 0 0 10px;
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.quote-author {
+  margin: 0;
+  font: 800 clamp(42px, 5vw, 76px)/.85 "Barlow Condensed", sans-serif;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+.quote-file {
+  margin: 18px 0 0;
+  color: #657484;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.quote-actions { display: grid; gap: 10px; margin-top: 30px; }
+.quote-action {
+  min-height: 50px;
+  padding: 0 18px;
+  border: 1px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--ink);
+  background: transparent;
+  font: 800 12px/1 "Inter", sans-serif;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.quote-action:hover { transform: translateX(4px); background: var(--ink); color: #fff; }
+.quote-action-primary { color: #fff; border-color: var(--blue); background: var(--blue); }
+.quote-action-primary:hover { background: var(--blue-dark); }
+.quote-browser {
+  position: relative;
+  z-index: 1;
+  margin-top: 44px;
+}
+.quote-filters {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 18px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.quote-filters::-webkit-scrollbar { display: none; }
+.quote-filter {
+  flex: 0 0 auto;
+  min-height: 39px;
+  padding: 0 16px;
+  border: 1px solid rgba(255,255,255,.32);
+  color: #dcecff;
+  background: transparent;
+  font: 800 11px/1 "Inter", sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.quote-filter:hover,
+.quote-filter.is-active { color: var(--ink); background: #fff; border-color: #fff; }
+.quote-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.quote-thumb {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 4/5;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(0,0,0,.18);
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.quote-thumb:nth-child(5n+2), .quote-thumb:nth-child(5n+4) { transform: translateY(18px); }
+.quote-thumb:hover { transform: translateY(-6px) rotate(-.5deg); box-shadow: 0 22px 48px rgba(0,0,0,.32); }
+.quote-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.quote-thumb span {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 24px 12px 11px;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(3,15,27,.9));
+  text-align: left;
+  font: 800 15px/1 "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+}
+.quote-more {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 38px;
+  border: 1px solid rgba(255,255,255,.4);
+  color: #fff;
+  background: rgba(255,255,255,.04);
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.quote-more:hover { background: #fff; color: var(--ink); }
+.quote-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  padding: clamp(18px, 4vw, 60px);
+  display: grid;
+  place-items: center;
+  background: rgba(2,9,15,.94);
+  backdrop-filter: blur(18px);
+}
+.quote-modal[hidden] { display: none; }
+.quote-modal-card {
+  width: min(1120px, 100%);
+  max-height: 92svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(250px, .7fr);
+  background: #fff;
+  overflow: auto;
+}
+.quote-modal-image { min-height: 70svh; display: grid; place-items: center; background: #e8edf1; }
+.quote-modal-image img { width: 100%; height: 100%; max-height: 82svh; object-fit: contain; padding: 24px; }
+.quote-modal-copy { padding: 38px; color: var(--ink); display: flex; flex-direction: column; justify-content: space-between; }
+.quote-modal-copy h3 { margin: 8px 0 0; font: 800 clamp(42px, 5vw, 70px)/.86 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.quote-modal-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 32px; }
+.quote-modal-controls button, .quote-modal-controls a {
+  min-height: 46px;
+  border: 1px solid var(--ink);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.quote-modal-close { grid-column: 1 / -1; color: #fff !important; background: var(--ink) !important; }
+body.modal-open { overflow: hidden; }
+
+@media (max-width: 1050px) {
+  .thought-heading { grid-template-columns: 1fr; gap: 18px; }
+  .quote-stage { grid-template-columns: 1fr; }
+  .quote-visual { min-height: 500px; }
+  .quote-info { min-height: 310px; }
+  .quote-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .thought-section::before { top: 74px; right: -30px; }
+  .thought-heading { margin-bottom: 28px; }
+  .thought-heading > p:last-child { font-size: 13px; }
+  .quote-stage { margin: 0 -20px; min-height: 0; }
+  .quote-visual { min-height: 440px; }
+  .quote-visual img { padding: 12px; }
+  .quote-info { min-height: 270px; padding: 28px 20px; }
+  .quote-author { font-size: 48px; }
+  .quote-browser { margin-top: 36px; }
+  .quote-grid {
+    width: calc(100% + 20px);
+    margin-right: -20px;
+    padding-right: 20px;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .quote-grid::-webkit-scrollbar { display: none; }
+  .quote-thumb,
+  .quote-thumb:nth-child(5n+2),
+  .quote-thumb:nth-child(5n+4) {
+    flex: 0 0 min(72vw, 280px);
+    transform: none;
+    scroll-snap-align: start;
+  }
+  .quote-thumb:hover { transform: none; }
+  .quote-modal { padding: 0; }
+  .quote-modal-card { width: 100%; max-height: 100svh; min-height: 100svh; grid-template-columns: 1fr; }
+  .quote-modal-image { min-height: 58svh; }
+  .quote-modal-copy { padding: 24px 20px; }
+  .quote-modal-copy h3 { font-size: 46px; }
+}
+
+@media (max-width: 430px) {
+  .quote-visual { min-height: 390px; }
+  .quote-action { font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-visual img, .quote-thumb, .quote-action { transition: none; }
+}
