@@ -13,4 +13,12 @@ menu?.querySelectorAll("a").forEach((link) => {
   });
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    menu?.classList.remove("open");
+    menuButton?.setAttribute("aria-expanded", "false");
+    menuButton?.focus();
+  }
+});
+
 document.querySelector("#year").textContent = new Date().getFullYear();
