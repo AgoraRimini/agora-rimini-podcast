@@ -229,6 +229,150 @@ img { max-width: 100%; display: block; }
     url("https://d3wo5wojvuv7l.cloudfront.net/t_square_limited_480/images.spreaker.com/original/889a5b83b4484346c7dde9489044110a.jpg") center / cover no-repeat;
 }
 
+.curated-section {
+  background:
+    linear-gradient(90deg, transparent 0 49.9%, rgba(7,20,33,.08) 50%, transparent 50.1%),
+    #e9eff4;
+}
+.curated-intro {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  column-gap: 40px;
+  align-items: end;
+  margin-bottom: 42px;
+}
+.curated-intro .kicker { grid-column: 1 / -1; }
+.curated-intro > p:last-child {
+  max-width: 520px;
+  margin: 0 0 4px;
+  color: #4d5c69;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.curated-columns {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+.special-column,
+.interview-column {
+  min-width: 0;
+  padding: clamp(22px, 3vw, 38px);
+}
+.special-column {
+  color: white;
+  background:
+    linear-gradient(145deg, transparent 0 62%, rgba(255,255,255,.07) 62.2% 64%, transparent 64.2%),
+    var(--blue);
+}
+.interview-column {
+  background: white;
+  border: 1px solid rgba(7,20,33,.12);
+}
+.curated-heading {
+  min-height: 94px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid currentColor;
+}
+.special-column .curated-heading { border-color: rgba(255,255,255,.35); }
+.curated-index {
+  display: block;
+  margin-bottom: 13px;
+  font: 700 12px/1 "Barlow Condensed", sans-serif;
+  letter-spacing: .16em;
+  opacity: .65;
+}
+.curated-heading .kicker { margin-bottom: 5px; }
+.special-column .kicker { color: #a7d4ff; }
+.curated-heading h3 {
+  margin: 0;
+  font: 800 clamp(31px, 3vw, 46px)/.92 "Barlow Condensed", sans-serif;
+  letter-spacing: -.025em;
+  text-transform: uppercase;
+}
+.curated-symbol {
+  color: rgba(255,255,255,.8);
+  font: 700 52px/1 "Barlow Condensed", sans-serif;
+}
+.interview-symbol { color: var(--blue); }
+.special-list { display: grid; gap: 10px; }
+.special-card {
+  min-height: 84px;
+  padding: 17px 18px;
+  display: grid;
+  grid-template-columns: 48px 1fr 32px;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  color: var(--ink);
+  background: white;
+  clip-path: polygon(0 0, 96% 0, 100% 22%, 100% 100%, 4% 100%, 0 78%);
+  transition: transform .2s ease, background-color .2s ease;
+}
+.special-card:nth-child(even) {
+  color: white;
+  background: var(--ink);
+}
+.special-card:hover { transform: translateX(6px); background: #dcecff; }
+.special-card:nth-child(even):hover { background: #102b43; }
+.episode-code {
+  color: var(--blue);
+  font: 800 13px/1 "Barlow Condensed", sans-serif;
+  letter-spacing: .08em;
+}
+.special-card:nth-child(even) .episode-code { color: #77bbff; }
+.special-card strong {
+  font: 800 clamp(19px, 1.7vw, 25px)/1 "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+}
+.episode-play {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--blue);
+  border-radius: 50%;
+  font-size: 9px;
+  padding-left: 2px;
+}
+.interview-list { border-top: 1px solid var(--line); }
+.interview-list a {
+  min-height: 52px;
+  display: grid;
+  grid-template-columns: 34px 1fr 22px;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--line);
+  transition: color .2s ease, padding .2s ease, background-color .2s ease;
+}
+.interview-list a:hover {
+  padding-left: 9px;
+  color: var(--blue);
+  background: #f2f7fb;
+}
+.interview-list span {
+  color: #8a99a7;
+  font: 700 11px/1 "Barlow Condensed", sans-serif;
+}
+.interview-list strong {
+  padding: 9px 0;
+  font: 700 clamp(15px, 1.2vw, 18px)/1.08 "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+}
+.interview-list i {
+  color: var(--blue);
+  font-style: normal;
+  font-weight: 800;
+}
+
 .editorial-section { background: #fff; }
 .article-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 18px; }
 .article-card { min-width: 0; border: 1px solid var(--line); background: white; transition: transform .2s ease, box-shadow .2s ease; }
@@ -288,6 +432,8 @@ img { max-width: 100%; display: block; }
   .article-grid { grid-template-columns: 1fr 1fr; }
   .article-card-featured { grid-column: 1 / -1; }
   .vignette-grid { grid-template-columns: repeat(2, 1fr); }
+  .curated-columns { grid-template-columns: 1fr; }
+  .curated-section { background: #e9eff4; }
 }
 
 @media (max-width: 760px) {
@@ -374,6 +520,26 @@ img { max-width: 100%; display: block; }
   .section h2, .about h2 { font-size: clamp(38px, 12vw, 52px); }
   .player-shell { margin: 0 -20px; border-left: 0; border-right: 0; }
   .player-shell iframe { height: 300px; }
+
+  .curated-intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .curated-intro .kicker { grid-column: auto; }
+  .curated-columns { gap: 14px; }
+  .special-column,
+  .interview-column { padding: 24px 18px; }
+  .curated-heading { min-height: 0; margin-bottom: 20px; }
+  .curated-symbol { font-size: 42px; }
+  .special-card {
+    min-height: 78px;
+    grid-template-columns: 42px 1fr 30px;
+    padding: 14px 13px;
+  }
+  .special-card strong { font-size: 20px; }
+  .interview-list a { min-height: 58px; }
+  .interview-list strong { font-size: 17px; }
 
   .article-grid {
     width: calc(100% + 20px);
