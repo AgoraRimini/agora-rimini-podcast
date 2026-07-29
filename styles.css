@@ -220,7 +220,14 @@ img { max-width: 100%; display: block; }
 }
 .episode-section .kicker { color: #70b8ff; }
 .episode-section .text-link { color: white; border-color: rgba(255,255,255,.5); }
-.player-shell { overflow: hidden; border: 1px solid rgba(255,255,255,.15); box-shadow: var(--shadow); background: #061423; }
+.player-shell {
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.26);
+  box-shadow: var(--shadow);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.96), rgba(255,255,255,.76)),
+    url("https://d3wo5wojvuv7l.cloudfront.net/t_square_limited_480/images.spreaker.com/original/889a5b83b4484346c7dde9489044110a.jpg") center / cover no-repeat;
+}
 
 .editorial-section { background: #fff; }
 .article-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 18px; }
