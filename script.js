@@ -66,6 +66,10 @@ const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 
 const quotesScript = document.createElement("script");
-quotesScript.src = "quotes.js";
-quotesScript.defer = true;
+quotesScript.src = "quotes.js?v=3";
+quotesScript.onload = () => {
+  const quotesFixScript = document.createElement("script");
+  quotesFixScript.src = "quotes-fix.js?v=2";
+  document.body.appendChild(quotesFixScript);
+};
 document.body.appendChild(quotesScript);
