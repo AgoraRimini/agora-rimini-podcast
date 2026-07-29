@@ -37,9 +37,27 @@
       <div class="hero-art" role="img" aria-label="I tre conduttori di Agorà Rimini Podcast illustrati in stile manga davanti a Rimini"></div>
       <div class="hero-copy">
         <h1>I tre folli<br>idealisti.</h1>
-        <a class="button button-primary" href="#puntate">
-          <span class="play-icon">▶</span> Ascolta l’ultima puntata
-        </a>
+        <button
+          id="trailer-toggle"
+          class="button button-primary trailer-button"
+          type="button"
+          disabled
+          aria-pressed="false"
+          aria-label="Riproduci il trailer di Agorà Rimini Podcast"
+        >
+          <span class="play-icon" aria-hidden="true">▶</span>
+          <span class="trailer-label">Ascolta il trailer</span>
+        </button>
+        <div class="trailer-player" aria-hidden="true">
+          <iframe
+            id="trailer-widget"
+            title="Trailer Agorà Rimini Podcast"
+            src="https://widget.spreaker.com/player?episode_id=72999361&amp;theme=dark&amp;autoplay=false&amp;playlist=false&amp;playlist-continuous=false&amp;chapters-image=false"
+            allow="autoplay"
+            tabindex="-1"
+          ></iframe>
+        </div>
+        <p id="trailer-status" class="sr-only" aria-live="polite"></p>
       </div>
       <a class="scroll-cue" href="#puntate" aria-label="Vai alle puntate">↓</a>
     </section>
@@ -154,6 +172,7 @@
       <a href="https://www.spreaker.com/podcast/agora-rimini-podcast--5748998" target="_blank" rel="noreferrer">Spreaker ↗</a>
     </div>
   </footer>
-  <script src="script.js"></script>
+  <script defer src="https://cdn.embed.ly/player-0.1.0.min.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>
