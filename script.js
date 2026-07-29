@@ -65,6 +65,10 @@ document.addEventListener("keydown", (event) => {
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 
+// Sezione articoli temporaneamente rimossa dal sito e dalla navigazione.
+document.querySelector("#articoli")?.remove();
+document.querySelector('.main-nav a[href="#articoli"]')?.remove();
+
 const quotesScript = document.createElement("script");
 quotesScript.src = "quotes.js?v=3";
 quotesScript.onload = () => {
