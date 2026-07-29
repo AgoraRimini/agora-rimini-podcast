@@ -1,0 +1,78 @@
+@media (min-width: 1060px) {
+  .quote-stage {
+    grid-template-columns: minmax(0, 1.62fr) minmax(300px, .38fr);
+    min-height: 650px;
+  }
+
+  .quote-poster {
+    min-height: 650px;
+    padding: clamp(64px, 6vw, 104px) clamp(58px, 7vw, 118px);
+  }
+
+  .quote-text {
+    max-width: 980px;
+    font-size: clamp(30px, 3.15vw, 52px);
+    line-height: 1.13;
+    letter-spacing: -.012em;
+    word-spacing: .06em;
+    text-wrap: pretty;
+  }
+
+  .quote-signature {
+    margin-top: 54px;
+    padding-top: 26px;
+  }
+
+  .quote-signature strong {
+    line-height: 1;
+    letter-spacing: .01em;
+  }
+
+  .quote-info {
+    padding: 50px 38px;
+  }
+
+  .quote-author {
+    font-size: clamp(40px, 4vw, 62px);
+    line-height: .94;
+  }
+
+  .quote-thumb {
+    padding: 26px;
+  }
+
+  .quote-thumb blockquote {
+    font-size: clamp(17px, 1.32vw, 22px);
+    line-height: 1.16;
+    letter-spacing: .005em;
+    word-spacing: .035em;
+    -webkit-line-clamp: 7;
+  }
+
+  .quote-thumb footer {
+    left: 26px;
+    right: 26px;
+    bottom: 22px;
+  }
+
+  .quote-modal-poster blockquote {
+    font-size: clamp(31px, 3.5vw, 54px);
+    line-height: 1.12;
+    letter-spacing: -.01em;
+    word-spacing: .05em;
+    text-wrap: pretty;
+  }
+}
+
+.quote-stage.is-randomizing .quote-poster {
+  animation: quote-refresh .32s ease;
+}
+
+@keyframes quote-refresh {
+  0% { opacity: .45; transform: translateY(7px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-stage.is-randomizing .quote-poster { animation: none; }
+}
