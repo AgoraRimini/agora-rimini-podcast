@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <header class="site-header">
@@ -38,25 +38,12 @@
       <div class="hero-art" role="img" aria-label="I tre conduttori di Agorà Rimini Podcast illustrati in stile manga davanti a Rimini"></div>
       <div class="hero-copy">
         <h1>I tre folli<br>idealisti.</h1>
-        <button
-          id="trailer-toggle"
-          class="button button-primary trailer-button"
-          type="button"
-          disabled
-          aria-pressed="false"
-          aria-label="Riproduci il trailer di Agorà Rimini Podcast"
-        >
+        <button id="trailer-toggle" class="button button-primary trailer-button" type="button" disabled aria-pressed="false" aria-label="Riproduci il trailer di Agorà Rimini Podcast">
           <span class="play-icon" aria-hidden="true">▶</span>
           <span class="trailer-label">Ascolta il trailer</span>
         </button>
         <div class="trailer-player" aria-hidden="true">
-          <iframe
-            id="trailer-widget"
-            title="Trailer Agorà Rimini Podcast"
-            src="https://widget.spreaker.com/player?episode_id=72999361&amp;theme=dark&amp;autoplay=false&amp;playlist=false&amp;playlist-continuous=false&amp;chapters-image=false"
-            allow="autoplay"
-            tabindex="-1"
-          ></iframe>
+          <iframe id="trailer-widget" title="Trailer Agorà Rimini Podcast" src="https://widget.spreaker.com/player?episode_id=72999361&amp;theme=dark&amp;autoplay=false&amp;playlist=false&amp;playlist-continuous=false&amp;chapters-image=false" allow="autoplay" tabindex="-1"></iframe>
         </div>
         <p id="trailer-status" class="sr-only" aria-live="polite"></p>
       </div>
@@ -65,10 +52,7 @@
 
     <section id="puntate" class="section episode-section">
       <div class="section-heading">
-        <div>
-          <p class="kicker">In onda adesso</p>
-          <h2>Ascolta le nostre puntate</h2>
-        </div>
+        <div><p class="kicker">In onda adesso</p><h2>Ascolta le nostre puntate</h2></div>
         <a class="text-link" href="https://www.spreaker.com/podcast/agora-rimini-podcast--5748998" target="_blank" rel="noreferrer">Tutte le puntate ↗</a>
       </div>
       <div class="player-shell">
@@ -77,23 +61,10 @@
     </section>
 
     <section id="speciali" class="section curated-section">
-      <div class="curated-intro">
-        <p class="kicker">Fuori dal formato</p>
-        <h2>Puntate da<br>non perdere</h2>
-        <p>Editoriali, esperimenti narrativi e conversazioni che meritano uno spazio tutto loro.</p>
-      </div>
-
+      <div class="curated-intro"><p class="kicker">Fuori dal formato</p><h2>Puntate da<br>non perdere</h2><p>Editoriali, esperimenti narrativi e conversazioni che meritano uno spazio tutto loro.</p></div>
       <div class="curated-columns">
         <div class="special-column">
-          <div class="curated-heading">
-            <div>
-              <span class="curated-index">01</span>
-              <p class="kicker">Edizioni fuori serie</p>
-              <h3>Puntate Speciali</h3>
-            </div>
-            <span class="curated-symbol" aria-hidden="true">✦</span>
-          </div>
-
+          <div class="curated-heading"><div><span class="curated-index">01</span><p class="kicker">Edizioni fuori serie</p><h3>Puntate Speciali</h3></div><span class="curated-symbol" aria-hidden="true">✦</span></div>
           <div class="special-list">
             <a class="special-card" href="https://www.spreaker.com/episode/editoriale-la-religione-del-controllo--70256448" target="_blank" rel="noreferrer"><span class="episode-code">S·01</span><strong>Editoriale — La religione del controllo</strong><span class="episode-play" aria-hidden="true">▶</span></a>
             <a class="special-card" href="https://www.spreaker.com/episode/armi-ecosostenibili--67090518" target="_blank" rel="noreferrer"><span class="episode-code">S·02</span><strong>Armi ecosostenibili</strong><span class="episode-play" aria-hidden="true">▶</span></a>
@@ -103,17 +74,8 @@
             <a class="special-card" href="https://www.spreaker.com/episode/trentennio-della-covidata--53271819" target="_blank" rel="noreferrer"><span class="episode-code">S·06</span><strong>Trentennio della Covidata</strong><span class="episode-play" aria-hidden="true">▶</span></a>
           </div>
         </div>
-
         <div class="interview-column">
-          <div class="curated-heading">
-            <div>
-              <span class="curated-index">02</span>
-              <p class="kicker">Voci nell’Agorà</p>
-              <h3>Le nostre interviste</h3>
-            </div>
-            <span class="curated-symbol interview-symbol" aria-hidden="true">◉</span>
-          </div>
-
+          <div class="curated-heading"><div><span class="curated-index">02</span><p class="kicker">Voci nell’Agorà</p><h3>Le nostre interviste</h3></div><span class="curated-symbol interview-symbol" aria-hidden="true">◉</span></div>
           <div class="interview-list">
             <a href="https://www.spreaker.com/episode/discutiamo-con-il-dott-corrado-paolizzi--52509702" target="_blank" rel="noreferrer"><span>01</span><strong>Discutiamo con il Dott. Corrado Paolizzi</strong><i>↗</i></a>
             <a href="https://www.spreaker.com/episode/biolab-bsl-3-di-pesaro-approfondimento-con-lisetta-sperindei--52641150" target="_blank" rel="noreferrer"><span>02</span><strong>Biolab BSL-3 di Pesaro con Lisetta Sperindei</strong><i>↗</i></a>
@@ -136,13 +98,7 @@
     <div id="pensieri-anchor" aria-hidden="true"></div>
 
     <section id="vignette" class="section vignette-section">
-      <div class="section-heading">
-        <div>
-          <p class="kicker">Satira illustrata</p>
-          <h2>Le nostre vignette</h2>
-        </div>
-        <a class="text-link" href="#">Vedi tutte →</a>
-      </div>
+      <div class="section-heading"><div><p class="kicker">Satira illustrata</p><h2>Le nostre vignette</h2></div><a class="text-link" href="#">Vedi tutte →</a></div>
       <div class="vignette-grid">
         <div class="vignette"><div class="ink-circle"></div><p>La realtà cambia canale.</p></div>
         <div class="vignette"><div class="ink-face">?</div><p>Promesse in alta definizione.</p></div>
@@ -155,7 +111,12 @@
       <div class="about-intro">
         <p class="kicker kicker-light">Chi siamo</p>
         <h2>Tre voci.<br>Una sola Agorà.</h2>
-        <p>Paolo, Fabio e Ago. Tre amici, tre punti di vista, nessuna voglia di restare in silenzio. Parliamo di politica, società e Rimini con ironia, spirito critico e libertà.</p>
+        <div class="about-manifesto">
+          <p>Paolo, Fabio e Ago. Tre amici che ancora credono nella democrazia dal basso, anche in questa società moralmente, ideologicamente e democraticamente morente.</p>
+          <p>Parliamo di politica, società e attualità con ironia, satira, spirito critico e libertà.</p>
+          <p>Crediamo fermamente nella libertà di parola, di espressione e soprattutto nel dibattito vero, in cui si ascolta la controparte.</p>
+          <p class="about-final">Il nostro ultimo punto fermo: <strong>Libertà di Scelta!</strong></p>
+        </div>
         <a class="button button-light" href="#contatti">Entra nell’Agorà</a>
       </div>
       <div class="hosts">
@@ -167,11 +128,14 @@
   </main>
 
   <footer id="contatti" class="site-footer">
-    <div class="footer-brand"><img src="assets/logo.jpg" alt=""><p>I tre folli idealisti.</p></div>
-    <div class="footer-cta"><p>Hai una storia, un’idea o qualcosa da dire?</p><a href="mailto:info@agorariminipodcast.it">Scrivici →</a></div>
+    <div class="footer-brand footer-brand-panel">
+      <img src="assets/logo.jpg?v=2" alt="Logo Agorà Rimini Podcast">
+      <div><span>Agorà Rimini Podcast</span><p>I tre folli idealisti.</p></div>
+    </div>
+    <div class="footer-cta"><p>Hai una storia, un’idea o qualcosa da dire?</p><a href="mailto:agora.rimini@proton.me">Scrivici →</a></div>
     <div class="footer-bottom"><span>© <span id="year"></span> Agorà Rimini Podcast</span><span>Rimini · Italia</span><a href="https://www.spreaker.com/podcast/agora-rimini-podcast--5748998" target="_blank" rel="noreferrer">Spreaker ↗</a></div>
   </footer>
   <script defer src="https://cdn.embed.ly/player-0.1.0.min.js"></script>
-  <script defer src="script.js?v=6"></script>
+  <script defer src="script.js?v=8"></script>
 </body>
 </html>
