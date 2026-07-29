@@ -10,31 +10,23 @@ let trailerController;
 const setTrailerStopped = (label = "Ascolta il trailer") => {
   trailerButton?.classList.remove("is-playing");
   trailerButton?.setAttribute("aria-pressed", "false");
-  trailerButton?.setAttribute(
-    "aria-label",
-    "Riproduci il trailer di Agorà Rimini Podcast"
-  );
+  trailerButton?.setAttribute("aria-label", "Riproduci il trailer di Agorà Rimini Podcast");
   if (trailerLabel) trailerLabel.textContent = label;
   if (trailerIcon) trailerIcon.textContent = "▶";
 };
 
 trailerButton?.addEventListener("click", () => {
   if (!trailerController) return;
-
   if (trailerButton.classList.contains("is-playing")) {
     trailerController.pause();
     setTrailerStopped("Riprendi il trailer");
     if (trailerStatus) trailerStatus.textContent = "Trailer in pausa.";
     return;
   }
-
   trailerController.play();
   trailerButton.classList.add("is-playing");
   trailerButton.setAttribute("aria-pressed", "true");
-  trailerButton.setAttribute(
-    "aria-label",
-    "Interrompi il trailer di Agorà Rimini Podcast"
-  );
+  trailerButton.setAttribute("aria-label", "Interrompi il trailer di Agorà Rimini Podcast");
   if (trailerLabel) trailerLabel.textContent = "Interrompi il trailer";
   if (trailerIcon) trailerIcon.textContent = "■";
   if (trailerStatus) trailerStatus.textContent = "Riproduzione del trailer avviata.";
@@ -42,15 +34,9 @@ trailerButton?.addEventListener("click", () => {
 
 if (trailerFrame && window.playerjs?.Player) {
   trailerController = new window.playerjs.Player(trailerFrame);
-  trailerController.on("ready", () => {
-    trailerButton?.removeAttribute("disabled");
-  });
-  trailerController.on("play", () => {
-    trailerButton?.classList.add("is-playing");
-  });
-  trailerController.on("pause", () => {
-    setTrailerStopped("Riprendi il trailer");
-  });
+  trailerController.on("ready", () => trailerButton?.removeAttribute("disabled"));
+  trailerController.on("play", () => trailerButton?.classList.add("is-playing"));
+  trailerController.on("pause", () => setTrailerStopped("Riprendi il trailer"));
   trailerController.on("ended", () => {
     setTrailerStopped("Riascolta il trailer");
     if (trailerStatus) trailerStatus.textContent = "Trailer terminato.";
@@ -73,9 +59,13 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     menu?.classList.remove("open");
     menuButton?.setAttribute("aria-expanded", "false");
-    menuButton?.focus();
   }
 });
 
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
+
+const quotesScript = document.createElement("script");
+quotesScript.src = "quotes.js";
+quotesScript.defer = true;
+document.body.appendChild(quotesScript);
