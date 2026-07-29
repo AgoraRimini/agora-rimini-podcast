@@ -65,15 +65,16 @@ document.addEventListener("keydown", (event) => {
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 
-// Sezione articoli temporaneamente rimossa dal sito e dalla navigazione.
-document.querySelector("#articoli")?.remove();
-document.querySelector('.main-nav a[href="#articoli"]')?.remove();
-
+// Carica prima la sezione citazioni: quotes.js usa #articoli come punto di inserimento.
 const quotesScript = document.createElement("script");
-quotesScript.src = "quotes.js?v=3";
+quotesScript.src = "quotes.js?v=4";
 quotesScript.onload = () => {
+  // Una volta inserita la sezione citazioni, rimuove soltanto gli articoli.
+  document.querySelector("#articoli")?.remove();
+  document.querySelector('.main-nav a[href="#articoli"]')?.remove();
+
   const quotesFixScript = document.createElement("script");
-  quotesFixScript.src = "quotes-fix.js?v=2";
+  quotesFixScript.src = "quotes-fix.js?v=3";
   document.body.appendChild(quotesFixScript);
 };
 document.body.appendChild(quotesScript);
