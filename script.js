@@ -65,16 +65,24 @@ document.addEventListener("keydown", (event) => {
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 
-// Carica prima la sezione citazioni: quotes.js usa #articoli come punto di inserimento.
+// quotes.js inseriva la sezione prima del vecchio blocco articoli.
+// Il segnaposto mantiene quel punto di montaggio senza ripristinare gli articoli.
+const thoughtsAnchor = document.querySelector("#pensieri-anchor");
+if (thoughtsAnchor && !document.querySelector("#articoli")) {
+  thoughtsAnchor.id = "articoli";
+}
+
 const quotesScript = document.createElement("script");
-quotesScript.src = "quotes.js?v=4";
+quotesScript.src = "quotes.js?v=5";
 quotesScript.onload = () => {
-  // Una volta inserita la sezione citazioni, rimuove soltanto gli articoli.
   document.querySelector("#articoli")?.remove();
-  document.querySelector('.main-nav a[href="#articoli"]')?.remove();
 
   const quotesFixScript = document.createElement("script");
-  quotesFixScript.src = "quotes-fix.js?v=3";
+  quotesFixScript.src = "quotes-fix.js?v=4";
   document.body.appendChild(quotesFixScript);
+};
+quotesScript.onerror = () => {
+  const marker = document.querySelector("#articoli");
+  if (marker) marker.id = "pensieri-anchor";
 };
 document.body.appendChild(quotesScript);
