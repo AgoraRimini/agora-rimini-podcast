@@ -36,7 +36,13 @@ img { max-width: 100%; display: block; }
   z-index: 20;
   backdrop-filter: blur(16px);
 }
-.brand img { width: 142px; }
+.brand img {
+  width: 142px;
+  height: 64px;
+  object-fit: contain;
+  object-position: left center;
+  mix-blend-mode: multiply;
+}
 .main-nav { display: flex; justify-content: center; gap: clamp(18px, 2.5vw, 42px); }
 .main-nav a {
   font-size: 12px;
@@ -71,7 +77,7 @@ img { max-width: 100%; display: block; }
 .hero-art {
   position: absolute;
   inset: 0;
-  background: url("assets/hero-hosts.webp") center center / cover no-repeat;
+  background: url("assets/hero-hosts.webp") center top / cover no-repeat;
   z-index: -2;
 }
 .hero::after {
@@ -209,7 +215,7 @@ img { max-width: 100%; display: block; }
     grid-template-columns: 1fr auto;
     gap: 12px;
   }
-  .brand img { width: 112px; }
+  .brand img { width: 112px; height: 54px; }
   .social-link { display: none; }
   .menu-toggle {
     display: grid;
