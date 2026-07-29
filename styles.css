@@ -31,3 +31,101 @@
   .hero { min-height: 0; }
   .hero-art { height: 56.25vw; }
 }
+
+/* Chi siamo */
+.about-manifesto {
+  max-width: 720px;
+  margin: 26px 0 32px;
+  display: grid;
+  gap: 14px;
+}
+
+.about-manifesto p {
+  margin: 0;
+  color: #dbeaff;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.about-manifesto .about-final {
+  margin-top: 6px;
+  padding: 16px 18px;
+  border-left: 4px solid #8bc6ff;
+  color: #fff;
+  background: rgba(255,255,255,.08);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(22px,2.2vw,31px);
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.about-manifesto .about-final strong {
+  color: #8bc6ff;
+}
+
+/* Contatti */
+.footer-brand-panel {
+  width: min(560px,100%);
+  min-height: 150px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  color: #071421;
+  background: #fff;
+  box-shadow: 0 20px 55px rgba(0,0,0,.28);
+}
+
+.footer-brand-panel img {
+  width: 190px;
+  height: 96px;
+  object-fit: contain;
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+.footer-brand-panel span {
+  display: block;
+  margin-bottom: 5px;
+  color: #0b57a3;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.footer-brand-panel p {
+  margin: 0;
+  color: #071421;
+  font-size: 25px;
+}
+
+@media (max-width: 760px) {
+  .about-manifesto {
+    margin: 22px 0 28px;
+    gap: 12px;
+  }
+
+  .about-manifesto p {
+    font-size: 14px;
+    line-height: 1.68;
+  }
+
+  .footer-brand-panel {
+    min-height: 0;
+    padding: 22px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .footer-brand-panel img {
+    width: 170px;
+    height: auto;
+  }
+
+  .footer-brand-panel p {
+    font-size: 22px;
+  }
+}
