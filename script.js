@@ -93,3 +93,29 @@ quotesScript.onerror = () => {
   }
 };
 document.body.appendChild(quotesScript);
+
+
+// Selettore discografico: un solo Spotify Embed, aggiornato dalla cassa dei vinili.
+const releasePicks = document.querySelectorAll(".release-pick");
+const spotifyReleasePlayer = document.querySelector("#spotify-release-player");
+const musicCurrentTitle = document.querySelector("#music-current-title");
+const otherPlatformsLink = document.querySelector("#music-other-platforms");
+
+releasePicks.forEach((pick) => {
+  pick.addEventListener("click", () => {
+    const spotifyId = pick.dataset.spotify;
+    const title = pick.dataset.title;
+    if (!spotifyId || !spotifyReleasePlayer) return;
+
+    releasePicks.forEach((item) => {
+      const active = item === pick;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
+
+    spotifyReleasePlayer.src = `https://open.spotify.com/embed/album/${spotifyId}?utm_source=generator&theme=0`;
+    spotifyReleasePlayer.title = `${title} di NoPlaceToHide#05 su Spotify`;
+    if (musicCurrentTitle) musicCurrentTitle.textContent = title;
+    if (otherPlatformsLink && pick.dataset.hyperfollow) otherPlatformsLink.href = pick.dataset.hyperfollow;
+  });
+});
