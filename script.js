@@ -65,24 +65,31 @@ document.addEventListener("keydown", (event) => {
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 
-// quotes.js inseriva la sezione prima del vecchio blocco articoli.
-// Il segnaposto mantiene quel punto di montaggio senza ripristinare gli articoli.
+// La sezione articoli resta nel sorgente ma è sospesa dalla visualizzazione.
+const articlesSection = document.querySelector("#articoli");
+articlesSection?.setAttribute("hidden", "");
+articlesSection?.setAttribute("aria-hidden", "true");
+
+// quotes.js usa #articoli come riferimento per inserire le citazioni.
+// Il segnaposto serve solo come fallback se la sezione non è presente.
 const thoughtsAnchor = document.querySelector("#pensieri-anchor");
-if (thoughtsAnchor && !document.querySelector("#articoli")) {
+if (thoughtsAnchor && !articlesSection) {
   thoughtsAnchor.id = "articoli";
 }
 
 const quotesScript = document.createElement("script");
 quotesScript.src = "quotes.js?v=5";
 quotesScript.onload = () => {
-  document.querySelector("#articoli")?.remove();
+  if (!articlesSection) document.querySelector("#articoli")?.remove();
 
   const quotesFixScript = document.createElement("script");
   quotesFixScript.src = "quotes-fix.js?v=4";
   document.body.appendChild(quotesFixScript);
 };
 quotesScript.onerror = () => {
-  const marker = document.querySelector("#articoli");
-  if (marker) marker.id = "pensieri-anchor";
+  if (!articlesSection) {
+    const marker = document.querySelector("#articoli");
+    if (marker) marker.id = "pensieri-anchor";
+  }
 };
 document.body.appendChild(quotesScript);
