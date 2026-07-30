@@ -338,3 +338,85 @@
     font-size:13px;
   }
 }
+
+
+/* Music identity refinement: claim beside the name, branded shirt */
+.music-character-copy{
+  inset:24px 22px auto;
+  width:calc(100% - 44px);
+  max-width:none;
+}
+.music-brand-lockup{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(118px,.95fr);
+  align-items:end;
+  gap:14px;
+}
+.music-brand-lockup .music-alias{
+  min-width:0;
+}
+.music-brand-lockup p{
+  display:block;
+  align-self:end;
+  margin:0 0 3px;
+  padding:9px 10px 8px;
+  border-left:4px solid var(--blue);
+  color:#071421;
+  background:rgba(255,255,255,.92);
+  box-shadow:6px 6px 0 rgba(11,87,163,.16);
+  font-size:clamp(17px,1.35vw,22px);
+  line-height:.94;
+}
+.music-shirt-logo{
+  width:74px;
+  aspect-ratio:1;
+  position:absolute;
+  left:50%;
+  top:55%;
+  z-index:2;
+  border-radius:50%;
+  background:#fff url("assets/logo.jpg?v=2") center 54%/145% auto no-repeat;
+  clip-path:circle(47% at 50% 50%);
+  transform:translateX(-50%) rotate(-2deg);
+  opacity:.88;
+  filter:contrast(1.08) saturate(.9);
+  pointer-events:none;
+}
+@media(max-width:1050px){
+  .music-character-copy{
+    width:calc(48% - 28px);
+    max-width:none;
+  }
+  .music-brand-lockup{
+    grid-template-columns:1fr;
+    gap:11px;
+  }
+  .music-brand-lockup p{
+    width:max-content;
+    max-width:100%;
+    font-size:clamp(18px,2.7vw,23px);
+  }
+  .music-shirt-logo{
+    left:65%;
+    top:56%;
+  }
+}
+@media(max-width:760px){
+  .music-character-copy{
+    width:calc(72% - 22px);
+    max-width:none;
+  }
+  .music-brand-lockup{
+    grid-template-columns:minmax(0,1fr) minmax(104px,.78fr);
+    gap:10px;
+  }
+  .music-brand-lockup p{
+    width:auto;
+    font-size:16px;
+  }
+  .music-shirt-logo{
+    width:58px;
+    left:59%;
+    top:57%;
+  }
+}
