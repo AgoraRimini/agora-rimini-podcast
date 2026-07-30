@@ -1,92 +1,17 @@
-name: Fix mobile hero spacing
+name: Fix mobile hero spacing (manuale)
 
+# Workflow storico mantenuto solo per riferimento.
+# Non deve più avviarsi automaticamente: il layout mobile è già nel CSS
+# e la pubblicazione è gestita esclusivamente da pages.yml.
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/mobile-hero-spacing-fix.yml"
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  patch-mobile-css:
+  archived:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Update mobile hero layout only
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          path = Path("styles.css")
-          css = path.read_text(encoding="utf-8")
-
-          old_mobile = '''  .hero { min-height: 700px; }
-  .hero-art {
-    inset: 0 0 auto;
-    height: 52%;
-    background-position: center top;
-    background-size: 100% auto;
-  }
-  .hero::after {
-    background: linear-gradient(0deg, #fff 0 46%, rgba(255,255,255,.98) 53%, rgba(255,255,255,0) 68%);
-  }
-  .hero-copy {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 0 20px 74px;
-  }
-'''
-
-          new_mobile = '''  .hero {
-    min-height: 0;
-    display: block;
-    padding-top: 56.25vw;
-  }
-  .hero-art {
-    inset: 0 0 auto;
-    height: 56.25vw;
-    background-position: center top;
-    background-size: 100% auto;
-  }
-  .hero::after {
-    background: linear-gradient(0deg, #fff 0 30%, rgba(255,255,255,.96) 38%, rgba(255,255,255,0) 58%);
-  }
-  .hero-copy {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 24px 20px 38px;
-  }
-'''
-
-          old_small = '''@media (max-width: 430px) {
-  .hero { min-height: 650px; }
-  .hero-art { height: 48%; }
-'''
-
-          new_small = '''@media (max-width: 430px) {
-  .hero { min-height: 0; }
-  .hero-art { height: 56.25vw; }
-'''
-
-          if old_mobile not in css:
-              raise SystemExit("Mobile hero block not found; no changes applied.")
-          if old_small not in css:
-              raise SystemExit("Small-screen hero block not found; no changes applied.")
-
-          css = css.replace(old_mobile, new_mobile, 1)
-          css = css.replace(old_small, new_small, 1)
-          path.write_text(css, encoding="utf-8")
-          PY
-
-      - name: Commit mobile-only fix
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add styles.css
-          git commit -m "Fix mobile hero spacing [skip ci]"
-          git push
+      - name: Workflow archiviato
+        run: echo "Il fix mobile è già applicato; nessuna modifica necessaria."
