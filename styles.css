@@ -421,3 +421,75 @@
   }
 }
 
+
+
+/* Mobile-only music layout repair */
+@media(max-width:760px){
+  .music-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:28px;
+    width:100%;
+    min-width:0;
+  }
+  .music-character{
+    width:100%;
+    min-width:0;
+    min-height:440px;
+    overflow:hidden;
+  }
+  .music-character-copy{
+    inset:18px 14px auto;
+    width:calc(100% - 28px);
+    z-index:3;
+  }
+  .music-brand-lockup{
+    grid-template-columns:minmax(0,.9fr) minmax(112px,.78fr);
+    align-items:start;
+    gap:8px;
+  }
+  .music-brand-lockup p{
+    align-self:start;
+    margin-top:7px;
+    padding:8px 8px 7px;
+    font-size:14px;
+    line-height:.95;
+  }
+  .music-character img{
+    width:96%;
+    height:72%;
+    left:16%;
+    bottom:-1%;
+  }
+  .music-console,
+  .record-crate,
+  .release-picker,
+  .spotify-stage{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+  .record-crate{
+    overflow:hidden;
+  }
+  .release-picker{
+    grid-template-columns:repeat(9,104px);
+    gap:10px;
+    padding:46px 2px 10px;
+    overflow-x:auto;
+    overflow-y:visible;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;
+    touch-action:pan-x pan-y;
+    -webkit-overflow-scrolling:touch;
+  }
+  .release-pick{
+    width:104px;
+    min-width:104px;
+    height:176px;
+    scroll-snap-align:start;
+  }
+  .sleeve strong{
+    font-size:19px;
+  }
+}
