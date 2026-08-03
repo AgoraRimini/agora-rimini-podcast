@@ -1,0 +1,45 @@
+name: Aggiorna pagine puntate e sitemap
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate-episodes.mjs"
+      - ".github/workflows/update-episodes.yml"
+  schedule:
+    - cron: "20 5 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-episode-pages
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il repository
+        uses: actions/checkout@v4
+
+      - name: Configura Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Genera pagine e sitemap
+        run: node scripts/generate-episodes.mjs
+
+      - name: Pubblica gli aggiornamenti
+        run: |
+          if git diff --quiet -- puntate sitemap.xml; then
+            echo "Nessun aggiornamento."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add puntate sitemap.xml
+          git commit -m "Aggiorna pagine puntate e sitemap"
+          git push
