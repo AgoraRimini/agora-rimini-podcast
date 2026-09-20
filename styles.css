@@ -493,3 +493,133 @@
     font-size:19px;
   }
 }
+
+
+/* Lancio quinta stagione */
+@media (min-width: 761px) {
+  .hero-copy {
+    position: absolute;
+    left: clamp(42px, 7vw, 124px);
+    bottom: 66px;
+    width: min(360px, 28vw);
+    max-width: none;
+    padding: 0;
+    text-align: left;
+  }
+  .hero-copy .trailer-button { margin-left: 6px; }
+  .scroll-cue { left: 50%; transform: translateX(-50%); }
+}
+
+.season-launch {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 168px;
+  padding: 18px clamp(24px, 6vw, 110px);
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  color: #06366d;
+  background:
+    linear-gradient(135deg, rgba(11,87,163,.1) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(12deg, rgba(7,20,33,.045) 0 1px, transparent 1px 13px),
+    #f8f7f3;
+  clip-path: polygon(0 7%, 4% 0, 15% 4%, 28% 0, 43% 5%, 59% 0, 76% 4%, 91% 0, 100% 8%, 100% 92%, 94% 100%, 82% 96%, 68% 100%, 52% 95%, 38% 100%, 22% 96%, 7% 100%, 0 93%);
+}
+.season-launch::before,
+.season-launch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(80px, 12vw, 240px);
+  z-index: -1;
+  opacity: .98;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.8) 0 4px, transparent 4px 13px),
+    linear-gradient(125deg, #021b32 0 38%, #0b57a3 39% 65%, #021b32 66% 100%);
+}
+.season-launch::before { left: -42px; clip-path: polygon(0 0, 100% 0, 54% 100%, 0 100%); }
+.season-launch::after { right: -42px; clip-path: polygon(46% 0, 100% 0, 100% 100%, 0 100%); }
+.season-launch-inner {
+  position: relative;
+  width: min(100%, 980px);
+  padding: 17px clamp(70px, 12vw, 190px);
+  text-align: center;
+}
+.season-launch-inner::before,
+.season-launch-inner::after {
+  content: "";
+  position: absolute;
+  width: clamp(54px, 7vw, 102px);
+  height: 1px;
+  top: 56%;
+  background: #0b57a3;
+  box-shadow: 0 -8px 0 rgba(11,87,163,.36), 0 8px 0 rgba(11,87,163,.36);
+}
+.season-launch-inner::before { left: 0; transform: rotate(-5deg); }
+.season-launch-inner::after { right: 0; transform: rotate(5deg); }
+.season-launch-note {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 8px;
+  padding: 0 8px 4px;
+  color: #071421;
+  border-bottom: 3px solid #146bc1;
+  font: 800 clamp(14px, 1.35vw, 20px)/1 "Barlow Condensed", sans-serif;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transform: rotate(-1.1deg);
+}
+.season-launch h2 {
+  margin: 0;
+  color: #0b57a3;
+  font: italic 800 clamp(46px, 5.2vw, 86px)/.79 "Barlow Condensed", sans-serif;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 rgba(7,20,33,.12);
+  transform: rotate(-.6deg);
+}
+.season-launch-wave {
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 28px;
+  transform: translateX(-50%) rotate(.4deg);
+  opacity: .92;
+}
+.season-launch-wave span {
+  display: block;
+  width: 3px;
+  height: 8px;
+  background: #0b57a3;
+  transform: skewX(-9deg);
+}
+.season-launch-wave span:nth-child(2), .season-launch-wave span:nth-child(14) { height: 14px; }
+.season-launch-wave span:nth-child(3), .season-launch-wave span:nth-child(13) { height: 22px; }
+.season-launch-wave span:nth-child(4), .season-launch-wave span:nth-child(12) { height: 11px; }
+.season-launch-wave span:nth-child(5), .season-launch-wave span:nth-child(11) { height: 28px; }
+.season-launch-wave span:nth-child(6), .season-launch-wave span:nth-child(10) { height: 17px; }
+.season-launch-wave span:nth-child(7), .season-launch-wave span:nth-child(9) { height: 35px; }
+.season-launch-wave span:nth-child(8) { height: 43px; }
+
+@media (max-width: 760px) {
+  .season-launch {
+    min-height: 154px;
+    padding: 16px 12px;
+    clip-path: polygon(0 5%, 8% 0, 24% 4%, 44% 0, 63% 4%, 84% 0, 100% 6%, 100% 94%, 88% 100%, 69% 96%, 50% 100%, 28% 96%, 9% 100%, 0 94%);
+  }
+  .season-launch::before,
+  .season-launch::after { width: 94px; }
+  .season-launch::before { left: -38px; }
+  .season-launch::after { right: -38px; }
+  .season-launch-inner { padding: 15px 48px 18px; }
+  .season-launch-note { margin-bottom: 8px; font-size: 14px; letter-spacing: .07em; }
+  .season-launch h2 { font-size: clamp(42px, 13.5vw, 62px); line-height: .8; }
+  .season-launch-inner::before,
+  .season-launch-inner::after { width: 30px; top: 61%; }
+  .season-launch-wave { bottom: -9px; }
+}
