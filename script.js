@@ -65,12 +65,8 @@ document.addEventListener("keydown", (event) => {
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 
-// La sezione articoli resta nel sorgente ma è sospesa dalla visualizzazione.
-const articlesSection = document.querySelector("#articoli");
-articlesSection?.setAttribute("hidden", "");
-articlesSection?.setAttribute("aria-hidden", "true");
-
 // quotes.js usa #articoli come riferimento per inserire le citazioni.
+const articlesSection = document.querySelector("#articoli");
 // Il segnaposto serve solo come fallback se la sezione non è presente.
 const thoughtsAnchor = document.querySelector("#pensieri-anchor");
 if (thoughtsAnchor && !articlesSection) {

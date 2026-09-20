@@ -1,5 +1,36 @@
 @import url("styles-base.css");
 
+/* Articoli */
+.article-page { color: #071421; background: #f3f7fa; }
+.article-page .site-header { background: #fff; }
+.article-back { margin-left: auto; color: #0b57a3; font: 800 14px/1 "Barlow Condensed", sans-serif; letter-spacing: .05em; text-transform: uppercase; }
+.article-post { max-width: 1120px; margin: 0 auto; padding: clamp(70px, 10vw, 145px) 30px 110px; }
+.article-post-header { max-width: 810px; margin: 0 auto 46px; }
+.article-post-header h1 { max-width: 700px; margin: 12px 0 24px; font: italic 800 clamp(64px, 10vw, 138px)/.75 "Barlow Condensed", sans-serif; letter-spacing: -.065em; text-transform: uppercase; }
+.article-deck { max-width: 550px; margin: 0; color: #415260; font-size: clamp(18px, 2vw, 24px); line-height: 1.45; }
+.article-byline { margin: 27px 0 0; color: #577083; font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.article-byline span, .article-footer span { margin: 0 7px; color: #0b57a3; }
+.article-hero-image { max-width: 920px; margin: 0 auto clamp(50px, 7vw, 86px); border: 1px solid #d4e0e9; background: #fff; box-shadow: 0 24px 58px rgba(7,20,33,.12); }
+.article-hero-image img { display: block; width: 100%; height: auto; }
+.article-body { max-width: 700px; margin: 0 auto; font-size: 17px; line-height: 1.82; }
+.article-body p { margin: 0 0 1.55em; }
+.article-body blockquote { margin: 2.6em 0 0; padding: 28px 30px; border-left: 5px solid #0b57a3; color: #071421; background: #e4f0fa; font: italic 800 clamp(27px, 3.6vw, 42px)/1 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.article-body blockquote strong { color: #0b57a3; }
+.article-footer { padding: 29px 30px; color: #bdd3e7; background: #071421; text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.article-footer a { color: #fff; }
+
+@media (max-width: 760px) {
+  .article-page .site-header { min-height: 65px; padding: 10px 20px; }
+  .article-page .brand img { width: 96px; }
+  .article-back { font-size: 12px; }
+  .article-post { padding: 68px 20px 76px; }
+  .article-post-header { margin-bottom: 35px; }
+  .article-post-header h1 { font-size: clamp(64px, 21vw, 92px); }
+  .article-deck { font-size: 18px; }
+  .article-body { font-size: 16px; line-height: 1.76; }
+  .article-body blockquote { margin-top: 2.2em; padding: 24px 22px; font-size: 30px; }
+}
+
 /* Mobile-only hero spacing correction */
 @media (max-width: 760px) {
   .hero {
