@@ -623,3 +623,199 @@
   .season-launch-inner::after { width: 30px; top: 61%; }
   .season-launch-wave { bottom: -9px; }
 }
+
+/* Quinta stagione — poster sketch, approfondimento grafico */
+.season-launch {
+  min-height: 208px;
+  padding-block: 23px;
+  background:
+    radial-gradient(circle at 12% 43%, rgba(20,107,193,.16) 0 2px, transparent 2.5px) 0 0 / 18px 18px,
+    radial-gradient(circle at 88% 66%, rgba(7,20,33,.08) 0 1px, transparent 1.5px) 0 0 / 13px 13px,
+    repeating-linear-gradient(-14deg, transparent 0 17px, rgba(7,20,33,.045) 18px 19px),
+    #f8f7f3;
+}
+.season-launch::before,
+.season-launch::after {
+  width: clamp(120px, 16vw, 310px);
+  background:
+    linear-gradient(140deg, transparent 0 12%, rgba(255,255,255,.95) 12.5% 15%, transparent 15.5% 26%, rgba(255,255,255,.75) 26.5% 29%, transparent 29.5%),
+    repeating-linear-gradient(-44deg, rgba(1,21,43,.28) 0 2px, transparent 2px 9px),
+    linear-gradient(123deg, #021426 0 30%, #0b57a3 31% 61%, #1b78ce 62% 72%, #021426 73% 100%);
+}
+.season-launch::before { left: -82px; clip-path: polygon(0 0, 100% 0, 59% 100%, 0 100%); }
+.season-launch::after { right: -82px; clip-path: polygon(42% 0, 100% 0, 100% 100%, 0 100%); }
+.season-launch-inner {
+  min-height: 150px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 20px clamp(115px, 17vw, 260px) 27px;
+}
+.season-launch-inner::before,
+.season-launch-inner::after {
+  width: clamp(74px, 9vw, 150px);
+  height: 3px;
+  top: 62%;
+  background: #0b57a3;
+  box-shadow: 0 -10px 0 rgba(11,87,163,.35), 0 10px 0 rgba(11,87,163,.35), 12px -19px 0 -1px #071421;
+}
+.season-launch-inner::before { left: 0; transform: rotate(-7deg); }
+.season-launch-inner::after { right: 0; transform: rotate(7deg) scaleX(-1); }
+.season-launch-note {
+  z-index: 1;
+  margin-bottom: 10px;
+  padding: 4px 12px 7px;
+  border: 0;
+  color: #071421;
+  background: rgba(255,255,255,.78);
+  box-shadow: 7px 5px 0 rgba(20,107,193,.19);
+  font-size: clamp(15px, 1.48vw, 22px);
+}
+.season-launch-note::before,
+.season-launch-note::after {
+  content: "✦";
+  position: absolute;
+  top: 1px;
+  color: #146bc1;
+  font-size: 16px;
+}
+.season-launch-note::before { left: -18px; transform: rotate(-17deg); }
+.season-launch-note::after { right: -18px; transform: rotate(17deg); }
+.season-launch h2 {
+  position: relative;
+  z-index: 1;
+  padding: 0 5px;
+  font-size: clamp(55px, 6.2vw, 98px);
+  letter-spacing: -.055em;
+  text-shadow: 3px 3px 0 rgba(255,255,255,.92), 6px 7px 0 rgba(7,20,33,.12);
+}
+.season-launch h2::before {
+  content: "NUOVA FREQUENZA";
+  position: absolute;
+  right: -11px;
+  top: -20px;
+  color: rgba(7,20,33,.48);
+  font: 800 8px/1 "Inter", sans-serif;
+  letter-spacing: .18em;
+  transform: rotate(4deg);
+}
+.season-launch-wave {
+  z-index: 1;
+  bottom: -8px;
+  height: 41px;
+  gap: 4px;
+}
+.season-launch-wave span { width: 4px; box-shadow: 1px 1px 0 rgba(7,20,33,.18); }
+.season-launch-stamp {
+  position: absolute;
+  left: clamp(10px, 2.5vw, 36px);
+  top: 50%;
+  z-index: 2;
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-content: center;
+  color: #f8f7f3;
+  background: #071421;
+  border: 2px solid #146bc1;
+  border-radius: 50%;
+  box-shadow: 6px 6px 0 rgba(20,107,193,.34);
+  transform: translateY(-50%) rotate(-11deg);
+}
+.season-launch-stamp::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px dashed rgba(255,255,255,.62);
+  border-radius: inherit;
+}
+.season-launch-stamp strong {
+  display: block;
+  font: italic 800 43px/.65 "Barlow Condensed", sans-serif;
+}
+.season-launch-stamp span {
+  margin-top: 7px;
+  color: #8bc6ff;
+  font: 800 8px/1 "Inter", sans-serif;
+  letter-spacing: .17em;
+}
+.season-launch-doodles { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.season-launch-doodles i {
+  position: absolute;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: 3px solid #0b57a3;
+  border-radius: 50%;
+  opacity: .72;
+}
+.season-launch-doodles i:nth-child(1) { right: 13%; top: 25%; border-radius: 2px; transform: rotate(25deg); }
+.season-launch-doodles i:nth-child(2) { right: 18%; bottom: 15%; width: 13px; height: 13px; background: #146bc1; border: 0; transform: rotate(35deg); }
+.season-launch-doodles i:nth-child(3) { left: 16%; bottom: 19%; width: 24px; height: 24px; border-color: #071421; transform: rotate(45deg); }
+
+@media (max-width: 760px) {
+  .season-launch {
+    min-height: 222px;
+    padding: 18px 12px 20px;
+    background:
+      radial-gradient(circle at 17% 30%, rgba(20,107,193,.2) 0 2px, transparent 2.5px) 0 0 / 15px 15px,
+      repeating-linear-gradient(-14deg, transparent 0 14px, rgba(7,20,33,.045) 15px 16px),
+      #f8f7f3;
+  }
+  .season-launch::before,
+  .season-launch::after { width: 108px; }
+  .season-launch::before { left: -67px; }
+  .season-launch::after { right: -67px; }
+  .season-launch-inner {
+    min-height: 175px;
+    padding: 18px 32px 34px;
+  }
+  .season-launch-stamp {
+    top: 26px;
+    left: 15px;
+    width: 52px;
+    height: 52px;
+    border-width: 1px;
+    box-shadow: 3px 3px 0 rgba(20,107,193,.34);
+    transform: rotate(-11deg);
+  }
+  .season-launch-stamp::before { inset: 3px; }
+  .season-launch-stamp strong { font-size: 27px; }
+  .season-launch-stamp span { margin-top: 4px; font-size: 5px; letter-spacing: .11em; }
+  .season-launch-note {
+    max-width: 260px;
+    margin-left: 35px;
+    margin-bottom: 13px;
+    padding: 3px 8px 6px;
+    font-size: 14px;
+    line-height: 1;
+    box-shadow: 4px 4px 0 rgba(20,107,193,.19);
+  }
+  .season-launch-note::before,
+  .season-launch-note::after { font-size: 12px; }
+  .season-launch-note::before { left: -13px; }
+  .season-launch-note::after { right: -13px; }
+  .season-launch h2 {
+    max-width: 330px;
+    font-size: clamp(45px, 14vw, 64px);
+    line-height: .74;
+    text-align: center;
+  }
+  .season-launch h2::before {
+    right: 3px;
+    top: auto;
+    bottom: -18px;
+    font-size: 7px;
+  }
+  .season-launch-wave { bottom: 2px; gap: 3px; transform: translateX(-50%) scale(.82) rotate(.4deg); }
+  .season-launch-inner::before,
+  .season-launch-inner::after {
+    width: 28px;
+    top: 72%;
+    height: 2px;
+    box-shadow: 0 -7px 0 rgba(11,87,163,.35), 0 7px 0 rgba(11,87,163,.35);
+  }
+  .season-launch-doodles i:nth-child(1) { right: 13px; top: 21px; width: 22px; height: 22px; }
+  .season-launch-doodles i:nth-child(2) { right: 29px; bottom: 26px; width: 10px; height: 10px; }
+  .season-launch-doodles i:nth-child(3) { left: 24px; bottom: 29px; width: 17px; height: 17px; }
+}
