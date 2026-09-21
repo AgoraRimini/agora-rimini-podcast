@@ -1,5 +1,13 @@
 [
   {
+    "category": "Tecnologia",
+    "author": "Paolo",
+    "title": "Test tecnico temporaneo",
+    "subtitle": "Verifica automatica della pubblicazione editoriale.",
+    "date": "21 settembre 2026",
+    "url": "/articoli/test-tecnico-temporaneo/"
+  },
+  {
     "title": "Ultra stupidità",
     "subtitle": "Quando un’etichetta smette di descrivere le idee e comincia a sostituirle.",
     "category": "Società",
