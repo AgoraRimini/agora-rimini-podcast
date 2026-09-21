@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0b57a3">
+  <title>Area editoriale | Agorà Rimini Podcast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css?v=19">
+  <link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body class="admin-page">
+  <main class="admin-shell">
+    <section class="admin-intro">
+      <a class="admin-brand" href="/" aria-label="Torna alla home"><img src="../assets/logo.jpg" alt="Agorà Rimini Podcast"></a>
+      <p class="kicker">Area riservata</p>
+      <h1>Nuovo<br>articolo.</h1>
+      <p>Compila il form, controlla l’anteprima e pubblica. La struttura grafica verrà mantenuta automaticamente.</p>
+    </section>
+
+    <section class="admin-panel">
+      <form id="access-form" class="access-form" novalidate>
+        <p class="panel-label">Accesso redazione</p>
+        <h2>Entra nell’editor</h2>
+        <label>Utente<input id="access-user" autocomplete="username" required></label>
+        <label>Password<input id="access-password" type="password" autocomplete="current-password" required></label>
+        <p id="access-message" class="form-message" aria-live="polite"></p>
+        <button class="admin-button" type="submit">Accedi <span aria-hidden="true">→</span></button>
+      </form>
+
+      <form id="article-form" class="article-form" hidden>
+        <div class="editor-head"><div><p class="panel-label">Editor Agorà</p><h2>Componi l’articolo</h2></div><button id="logout" class="logout-button" type="button">Esci</button></div>
+
+        <div class="github-token-box">
+          <label for="github-token">Token personale GitHub <span>richiesto per pubblicare</span></label>
+          <div><input id="github-token" type="password" autocomplete="off" placeholder="Incolla il token solo per questa sessione"><button id="check-token" type="button">Verifica</button></div>
+          <p id="token-message" class="form-message">Il token non viene salvato e viene cancellato chiudendo la pagina.</p>
+        </div>
+
+        <div class="form-grid">
+          <label>Editoriale<select id="category" required><option>Società</option><option>Politica</option><option>Tecnologia</option><option>Cultura</option><option>Locale</option><option>Complottismo</option><option>Pensieri liberi</option></select></label>
+          <label>Autore<select id="author" required><option>Paolo</option><option>Fabio</option><option>Ago</option></select></label>
+          <label class="date-field">Data<input id="article-date" type="date" readonly aria-describedby="date-note"><small id="date-note">Impostata automaticamente alla data di compilazione.</small></label>
+        </div>
+        <label>Titolo<input id="title" maxlength="90" required placeholder="Titolo dell’articolo"></label>
+        <label>Sottotitolo<input id="subtitle" maxlength="190" required placeholder="Una frase che introduce il tema"></label>
+        <fieldset class="image-choice"><legend>Immagine di copertina</legend><label><input type="radio" name="has-image" value="no" checked> No</label><label><input type="radio" name="has-image" value="yes"> Sì, carica un’immagine</label><div id="image-upload" hidden><label class="upload-box" for="image">Scegli l’immagine<input id="image" type="file" accept="image/jpeg,image/png,image/webp"></label><p id="image-name" class="form-message">JPG, PNG o WEBP. Dimensione consigliata: massimo 5 MB.</p></div></fieldset>
+        <label>Articolo<textarea id="body" rows="16" required placeholder="Scrivi qui il testo dell’articolo. Ogni riga vuota crea un nuovo paragrafo."></textarea></label>
+        <label>Frase evidenziata<textarea id="highlight" rows="3" maxlength="360" required placeholder="Copia e incolla la frase che ritieni più significativa."></textarea></label>
+        <div class="publish-row"><p id="publish-message" class="form-message" aria-live="polite"></p><button id="publish" class="admin-button" type="submit">Pubblica articolo <span aria-hidden="true">↗</span></button></div>
+      </form>
+    </section>
+  </main>
+  <script src="access-config.js?v=1"></script>
+  <script src="editor.js?v=1"></script>
+</body>
+</html>
