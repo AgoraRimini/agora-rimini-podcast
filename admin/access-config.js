@@ -1,2 +1,3 @@
-/* Il valore viene impostato dopo la prima pubblicazione del Worker. */
-window.AGORA_EDITOR = { apiBaseUrl: "" };
+window.AGORA_EDITOR = {
+  apiBaseUrl: "https://agora-editorial-api.paolo-rocchetti.workers.dev"
+};
