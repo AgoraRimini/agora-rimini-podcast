@@ -1,14 +1,5 @@
 [
   {
-    "category": "Tecnologia",
-    "author": "Paolo",
-    "title": "Test immagine temporaneo",
-    "subtitle": "Verifica automatica del caricamento immagine.",
-    "date": "21 settembre 2026",
-    "url": "/articoli/test-immagine-temporaneo/",
-    "image": "/assets/articles/test-immagine-temporaneo.png"
-  },
-  {
     "title": "Ultra stupidità",
     "subtitle": "Quando un’etichetta smette di descrivere le idee e comincia a sostituirle.",
     "category": "Società",
