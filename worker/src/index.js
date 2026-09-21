@@ -8,7 +8,7 @@ const formatDate = (value) => new Intl.DateTimeFormat("it-IT", { day: "numeric",
 
 async function valid(data, env) { return data && data.username === env.EDITOR_USERNAME && data.password === env.EDITOR_PASSWORD; }
 async function github(path, env, options = {}) {
-  const response = await fetch(`https://api.github.com/repos/${env.GITHUB_REPOSITORY}/contents/${path}`, { ...options, headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${env.GITHUB_TOKEN}`, "X-GitHub-Api-Version": "2026-03-10", ...(options.headers || {}) } });
+  const response = await fetch(`https://api.github.com/repos/${env.GITHUB_REPOSITORY}/contents/${path}`, { ...options, headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${env.GITHUB_TOKEN}`, "User-Agent": "AgoraRimini-Editorial-Worker", "X-GitHub-Api-Version": "2026-03-10", ...(options.headers || {}) } });
   if (!response.ok) throw new Error(`GitHub: ${response.status}`);
   return response.json();
 }
