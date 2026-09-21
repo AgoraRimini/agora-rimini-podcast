@@ -49,6 +49,7 @@
 .github-token-box button{min-height:44px;margin-top:8px}
 .publish-row{align-items:start;flex-direction:column-reverse}
 }
+.admin-panel [hidden]{display:none!important}
 .article-manager{display:grid;gap:14px;padding-top:28px;border-top:1px solid #cbd9e3}
 .article-manager h3{margin:5px 0 0;font:800 30px/.9 "Barlow Condensed",sans-serif;letter-spacing:-.025em;text-transform:uppercase}
 .articles-list{display:grid;gap:10px}
