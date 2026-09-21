@@ -7,6 +7,8 @@ const imageUpload = document.querySelector("#image-upload");
 const imageInput = document.querySelector("#image");
 const imageName = document.querySelector("#image-name");
 const dateInput = document.querySelector("#article-date");
+const articlesList = document.querySelector("#articles-list");
+const articlesMessage = document.querySelector("#articles-message");
 let editorCredentials = null;
 
 dateInput.value = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Rome" });
@@ -19,12 +21,35 @@ async function api(path, payload) {
   if (!response.ok) throw new Error(result.error || "Operazione non completata.");
   return result;
 }
+function renderArticles(articles) {
+  articlesList.replaceChildren();
+  if (!articles.length) { articlesList.textContent = "Non ci sono ancora articoli pubblicati."; return; }
+  articles.forEach((article) => {
+    const item = document.createElement("article"); item.className = "article-item";
+    const info = document.createElement("div"); const title = document.createElement("strong"); const meta = document.createElement("span"); const link = document.createElement("a");
+    title.textContent = article.title; meta.textContent = `${article.author} · ${article.date}`; link.href = article.url; link.target = "_blank"; link.rel = "noopener"; link.textContent = "Apri ↗";
+    info.append(title, meta, link);
+    const remove = document.createElement("button"); remove.type = "button"; remove.className = "delete-button"; remove.textContent = "Cancella";
+    remove.addEventListener("click", async () => {
+      if (!window.confirm(`Cancellare definitivamente “${article.title}”?`)) return;
+      remove.disabled = true; setMessage(articlesMessage, "Cancellazione in corso…");
+      try { await api("/v1/delete", { ...editorCredentials, url: article.url }); setMessage(articlesMessage, "Articolo cancellato.", "success"); await loadArticles(); }
+      catch (error) { setMessage(articlesMessage, error.message, "error"); remove.disabled = false; }
+    });
+    item.append(info, remove); articlesList.append(item);
+  });
+}
+async function loadArticles() {
+  if (!editorCredentials) return;
+  try { const result = await api("/v1/articles", editorCredentials); renderArticles(result.articles || []); }
+  catch (error) { setMessage(articlesMessage, error.message, "error"); }
+}
 accessForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const username = document.querySelector("#access-user").value.trim();
   const password = document.querySelector("#access-password").value;
   setMessage(accessMessage, "Verifica accesso…");
-  try { await api("/v1/login", { username, password }); editorCredentials = { username, password }; accessForm.hidden = true; articleForm.hidden = false; document.querySelector("#title").focus(); }
+  try { await api("/v1/login", { username, password }); editorCredentials = { username, password }; accessForm.hidden = true; articleForm.hidden = false; document.querySelector("#title").focus(); await loadArticles(); }
   catch (error) { setMessage(accessMessage, error.message, "error"); }
 });
 document.querySelector("#logout").addEventListener("click", () => { editorCredentials = null; articleForm.hidden = true; accessForm.hidden = false; accessForm.reset(); });
@@ -39,6 +64,6 @@ articleForm.addEventListener("submit", async (event) => {
     if (!article.title || !article.subtitle || !article.body || !article.highlight) throw new Error("Completa tutti i campi obbligatori.");
     const image = file ? { base64: await fileToBase64(file), mimeType: file.type } : null;
     await api("/v1/publish", { ...editorCredentials, article, image });
-    setMessage(publishMessage, "Articolo pubblicato. Sarà online entro pochi minuti.", "success"); articleForm.reset(); dateInput.value = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Rome" }); imageUpload.hidden = true;
+    setMessage(publishMessage, "Articolo pubblicato. Sarà online entro pochi minuti.", "success"); articleForm.reset(); dateInput.value = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Rome" }); imageUpload.hidden = true; await loadArticles();
   } catch (error) { setMessage(publishMessage, error.message, "error"); } finally { publish.disabled = false; }
 });

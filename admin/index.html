@@ -45,6 +45,11 @@
         <label>Articolo<textarea id="body" rows="16" required placeholder="Scrivi qui il testo dell’articolo. Ogni riga vuota crea un nuovo paragrafo."></textarea></label>
         <label>Frase evidenziata<textarea id="highlight" rows="3" maxlength="360" required placeholder="Copia e incolla la frase che ritieni più significativa."></textarea></label>
         <div class="publish-row"><p id="publish-message" class="form-message" aria-live="polite"></p><button id="publish" class="admin-button" type="submit">Pubblica articolo <span aria-hidden="true">↗</span></button></div>
+        <section class="article-manager" aria-labelledby="article-manager-title">
+          <div><p class="panel-label">Archivio editoriale</p><h3 id="article-manager-title">Articoli pubblicati</h3></div>
+          <p id="articles-message" class="form-message" aria-live="polite"></p>
+          <div id="articles-list" class="articles-list"></div>
+        </section>
       </form>
     </section>
   </main>
