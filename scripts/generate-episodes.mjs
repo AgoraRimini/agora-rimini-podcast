@@ -171,6 +171,7 @@ const listHtml = head({
 <main class="wrap"><p class="kicker">Archivio audio</p><h1>Tutte le puntate</h1><p class="lead">Le ultime 50 uscite, le puntate speciali e le nostre interviste. L’archivio si aggiorna automaticamente dal feed ufficiale.</p><div class="grid">${cards}</div></main>
 <footer>© Agorà Rimini Podcast · Rimini, Italia</footer></body></html>`;
 writeFileSync(join(OUTPUT_DIR, "index.html"), listHtml);
+await import("./build-content-catalog.mjs");
 
 const now = new Date().toISOString().slice(0, 10);
 const urls = [
