@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css?v=19">
-  <link rel="stylesheet" href="admin.css?v=3">
+  <link rel="stylesheet" href="admin.css?v=4">
 </head>
 <body class="admin-page">
   <main class="admin-shell">
@@ -42,7 +42,23 @@
         <label>Titolo<input id="title" maxlength="90" required placeholder="Titolo dell’articolo"></label>
         <label>Sottotitolo<input id="subtitle" maxlength="190" required placeholder="Una frase che introduce il tema"></label>
         <fieldset class="image-choice"><legend>Immagine di copertina</legend><label><input type="radio" name="has-image" value="no" checked> No</label><label><input type="radio" name="has-image" value="yes"> Sì, carica un’immagine</label><div id="image-upload" hidden><label class="upload-box" for="image">Scegli l’immagine<input id="image" type="file" accept="image/jpeg,image/png,image/webp"></label><p id="image-name" class="form-message">JPG, PNG o WEBP. Dimensione consigliata: massimo 5 MB.</p></div></fieldset>
-        <label>Articolo<textarea id="body" rows="16" required placeholder="Scrivi qui il testo dell’articolo. Ogni riga vuota crea un nuovo paragrafo."></textarea></label>
+        <section class="editor-section" aria-labelledby="body-label">
+          <div class="field-label" id="body-label">Articolo</div>
+          <p class="field-help">Scrivi normalmente. Per aggiungere un collegamento, seleziona le parole e premi il pulsante.</p>
+          <div class="body-tools"><button id="insert-link" type="button" class="tool-button">Inserisci link</button></div>
+          <div id="body" class="body-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="body-label" data-placeholder="Scrivi qui il testo dell’articolo. Ogni riga vuota crea un nuovo paragrafo."></div>
+        </section>
+        <section class="content-section" aria-labelledby="episode-label">
+          <div><div class="field-label" id="episode-label">Puntata collegata <span>Facoltativo</span></div><p class="field-help">Una puntata da proporre alla fine dell’articolo.</p></div>
+          <div class="content-picker"><input id="episode-search" type="search" placeholder="Cerca una puntata per titolo"><select id="linked-episode"><option value="">Nessuna puntata collegata</option></select></div>
+          <p id="episode-preview" class="content-preview" hidden></p>
+        </section>
+        <section class="content-section" aria-labelledby="related-label">
+          <div><div class="field-label" id="related-label">Contenuti correlati <span>Facoltativo</span></div><p class="field-help">Aggiungi puntate, articoli o canzoni collegati al tema.</p></div>
+          <div class="content-tabs" role="group" aria-label="Tipo di contenuto correlato"><button type="button" class="content-tab is-active" data-type="all">Tutti</button><button type="button" class="content-tab" data-type="episode">Puntate</button><button type="button" class="content-tab" data-type="article">Articoli</button><button type="button" class="content-tab" data-type="song">Canzoni</button></div>
+          <div class="content-picker"><input id="related-search" type="search" placeholder="Cerca per titolo"><select id="related-content"><option value="">Scegli un contenuto</option></select><button id="add-related" type="button" class="tool-button">Aggiungi</button></div>
+          <div id="related-list" class="selected-content" aria-live="polite"></div>
+        </section>
         <label>Frase evidenziata<textarea id="highlight" rows="3" maxlength="360" required placeholder="Copia e incolla la frase che ritieni più significativa."></textarea></label>
         <div class="publish-row"><p id="publish-message" class="form-message" aria-live="polite"></p><button id="publish" class="admin-button" type="submit">Pubblica articolo <span aria-hidden="true">↗</span></button></div>
         <section class="article-manager" aria-labelledby="article-manager-title">
@@ -54,6 +70,7 @@
     </section>
   </main>
   <script src="access-config.js?v=2"></script>
-  <script src="editor.js?v=2"></script>
+  <script src="editor.js?v=3"></script>
+  <dialog id="link-dialog" class="link-dialog" aria-labelledby="link-dialog-title"><form method="dialog" class="link-dialog-inner"><div class="dialog-head"><div><p class="panel-label">Collegamento nel testo</p><h2 id="link-dialog-title">Inserisci link</h2></div><button class="dialog-close" value="cancel" aria-label="Chiudi">×</button></div><p id="link-selection" class="link-selection"></p><div class="content-tabs" role="group" aria-label="Tipo di link"><button type="button" class="content-tab is-active" data-link-type="episode">Puntata</button><button type="button" class="content-tab" data-link-type="article">Articolo</button><button type="button" class="content-tab" data-link-type="song">Canzone</button><button type="button" class="content-tab" data-link-type="external">Link esterno</button></div><div id="internal-link-fields"><input id="link-search" type="search" placeholder="Cerca per titolo"><select id="link-content"><option value="">Scegli un contenuto</option></select><p id="link-preview" class="content-preview" hidden></p></div><label id="external-link-fields" hidden>Indirizzo esterno<input id="external-url" type="url" placeholder="https://esempio.it"></label><p id="link-message" class="form-message" aria-live="polite"></p><div class="dialog-actions"><button class="tool-button" value="cancel">Annulla</button><button id="confirm-link" class="admin-button" type="button">Conferma link</button></div></form></dialog>
 </body>
 </html>

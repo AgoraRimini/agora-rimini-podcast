@@ -12,8 +12,8 @@
 .panel-label{margin:0;color:#0b57a3;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
 .admin-panel h2{margin:0 0 8px;font:800 clamp(38px,4vw,54px)/.85 "Barlow Condensed",sans-serif;letter-spacing:-.035em;text-transform:uppercase}
 .admin-panel label,.image-choice legend{display:grid;gap:8px;color:#293b49;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
-.admin-panel input,.admin-panel select,.admin-panel textarea{width:100%;padding:14px 15px;border:1px solid #b8cbd9;color:#071421;background:#fff;font:500 16px/1.4 Inter,sans-serif;letter-spacing:0;text-transform:none;outline:0}
-.admin-panel input:focus,.admin-panel select:focus,.admin-panel textarea:focus{border-color:#0b57a3;box-shadow:0 0 0 3px rgba(11,87,163,.12)}
+.admin-panel input,.admin-panel select,.admin-panel textarea,.body-editor{width:100%;padding:14px 15px;border:1px solid #b8cbd9;color:#071421;background:#fff;font:500 16px/1.55 Inter,sans-serif;letter-spacing:0;text-transform:none;outline:0}
+.admin-panel input:focus,.admin-panel select:focus,.admin-panel textarea:focus,.body-editor:focus{border-color:#0b57a3;box-shadow:0 0 0 3px rgba(11,87,163,.12)}
 .admin-panel textarea{resize:vertical;min-height:112px}
 .admin-button{justify-self:start;padding:14px 19px;border:0;color:#fff;background:#0b57a3;cursor:pointer;font:800 18px/1 "Barlow Condensed",sans-serif;letter-spacing:.04em;text-transform:uppercase}
 .admin-button:hover{background:#071421}
@@ -35,6 +35,7 @@
 .image-choice input[type=radio]{width:auto}
 .upload-box{margin-top:16px;padding:18px;border:1px dashed #6e99b7;text-align:center;background:#f9fcff;cursor:pointer}
 .upload-box input{display:none}
+.editor-section,.content-section{display:grid;gap:10px;padding-top:4px}.field-label{color:#293b49;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}.field-label span{color:#6e8493;font-weight:600}.field-help{margin:0;color:#5c7283;font-size:12px;line-height:1.45;text-transform:none;letter-spacing:0}.body-tools{display:flex;justify-content:flex-end;margin-bottom:-3px}.tool-button{padding:9px 12px;border:1px solid #8ba3b5;color:#174c75;background:#fff;cursor:pointer;font:800 13px/1 "Barlow Condensed",sans-serif;letter-spacing:.05em;text-transform:uppercase}.tool-button:hover{color:#fff;background:#0b57a3;border-color:#0b57a3}.body-editor{min-height:310px;white-space:pre-wrap}.body-editor:empty:before{content:attr(data-placeholder);color:#7c909e;pointer-events:none}.body-editor a{color:#0b57a3;font-weight:700;text-decoration:underline}.content-picker{display:grid;grid-template-columns:1fr 1.4fr auto;gap:9px}.content-tabs{display:flex;flex-wrap:wrap;gap:6px}.content-tab{padding:7px 10px;border:1px solid #b8cbd9;color:#486171;background:#fff;cursor:pointer;font:800 12px/1 "Barlow Condensed",sans-serif;letter-spacing:.05em;text-transform:uppercase}.content-tab.is-active{border-color:#0b57a3;color:#fff;background:#0b57a3}.content-preview{margin:0;padding:10px 12px;border-left:3px solid #0b57a3;color:#35536a;background:#eef6fb;font-size:13px;line-height:1.4}.selected-content{display:grid;gap:8px}.selected-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid #c7d7e2;background:#fff}.selected-item span{color:#0b57a3;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.selected-item strong{display:block;margin-top:3px;font-size:13px}.selected-item button{padding:5px 7px;border:0;color:#a80e22;background:transparent;cursor:pointer;font-weight:800}.link-dialog{width:min(560px,calc(100% - 28px));padding:0;border:0;box-shadow:0 25px 80px rgba(2,25,45,.35)}.link-dialog::backdrop{background:rgba(3,18,31,.52)}.link-dialog-inner{display:grid;gap:16px;padding:24px;background:#f8fbfd}.dialog-head{display:flex;justify-content:space-between;gap:14px}.dialog-head h2{font-size:38px}.dialog-close{width:32px;height:32px;border:0;color:#35536a;background:transparent;cursor:pointer;font-size:28px;line-height:1}.link-selection{margin:0;padding:10px 12px;border-left:3px solid #0b57a3;background:#eaf4fb;color:#35536a;font-size:13px;line-height:1.4}.dialog-actions{display:flex;justify-content:flex-end;gap:10px}
 .publish-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:10px;border-top:1px solid #cbd9e3}
 .publish-row .form-message{max-width:380px}
 .admin-page .site-header{display:none}
@@ -48,6 +49,7 @@
 .github-token-box>div{display:block}
 .github-token-box button{min-height:44px;margin-top:8px}
 .publish-row{align-items:start;flex-direction:column-reverse}
+.content-picker{grid-template-columns:1fr}.content-picker .tool-button{min-height:42px}.body-editor{min-height:260px}
 }
 .admin-panel [hidden]{display:none!important}
 .article-manager{display:grid;gap:14px;padding-top:28px;border-top:1px solid #cbd9e3}
