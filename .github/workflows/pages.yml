@@ -27,6 +27,14 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Configura Python per le anteprime
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Genera automaticamente le card degli articoli
+        run: |
+          python -m pip install Pillow==12.1.1
+          python scripts/generate-og.py
       - name: Prepara sito statico
         uses: actions/upload-pages-artifact@v3
         with:
