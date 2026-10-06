@@ -1,9 +1,15 @@
-.article-heading-layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; align-items: center; gap: 38px; }
-.article-heading-copy { min-width: 0; }
-.article-author-portrait { width: 100%; height: 360px; background-image: url('/assets/hero-hosts.webp'); background-size: auto 115%; background-repeat: no-repeat; border-radius: 120px 120px 18px 18px; box-shadow: 8px 8px 0 #0b57a3; border: 3px solid #fff; }
-.article-author-paolo { background-position: 21% 20%; }
-.article-author-fabio { background-position: 48% 20%; }
-.article-author-ago { background-position: 83% 20%; }
+@font-face { font-family: 'Agora Article'; src: url('/assets/fonts/BarlowCondensed-ExtraBold.ttf') format('truetype'); font-style: normal; font-weight: 800; font-display: swap; }
+.article-post-header { max-width: 1040px; }
+.article-heading-layout { position: relative; isolation: isolate; min-height: 590px; }
+.article-heading-copy { position: relative; padding: 28px 0; }
+.article-heading-copy .kicker, .article-heading-copy h1, .article-heading-copy .article-deck, .article-heading-copy .article-byline, .article-share { position: relative; z-index: 2; }
+.article-heading-copy h1 { max-width: 80%; margin: 16px 0 28px; font-family: 'Agora Article', 'Barlow Condensed', sans-serif; font-style: italic; font-size: clamp(110px, 14.5vw, 190px); line-height: .88; letter-spacing: -.045em; overflow-wrap: anywhere; -webkit-text-stroke: 5px #f3f7fa; paint-order: stroke fill; }
+.article-heading-copy h1.article-title-long { font-size: clamp(80px, 10vw, 136px); overflow-wrap: normal; }
+.article-heading-copy .article-deck { max-width: 60%; }
+.article-heading-copy .article-byline { max-width: 60%; }
+.article-author-portrait { position: absolute; z-index: 1; bottom: 0; right: -20px; display: block; width: 52%; height: calc(100% + 130px); max-height: 780px; object-fit: contain; object-position: bottom right; pointer-events: none; }
+.article-heading-layout:not(:has(.article-author-portrait)) { min-height: 0; }
+.article-heading-layout:not(:has(.article-author-portrait)) h1, .article-heading-layout:not(:has(.article-author-portrait)) .article-deck { max-width: 100%; }
 .article-share { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 26px 0 24px; }
 .article-share a, .article-share button { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; border: 1px solid #cad7e1; border-radius: 999px; padding: 10px 15px; background: #fff; color: #0b57a3; font: 700 12px 'Inter', sans-serif; text-decoration: none; cursor: pointer; }
 .article-share [hidden] { display: none; }
@@ -11,18 +17,16 @@
 .article-share a:focus-visible, .article-share button:focus-visible { outline: 3px solid #0b57a3; outline-offset: 3px; }
 .article-share-status { width: 100%; color: #415260; font-size: 12px; }
 .article-share-status:empty { display: none; }
-@media (max-width: 700px) {
-  .article-heading-layout { grid-template-columns: minmax(0, 1fr) 110px; gap: 16px; align-items: start; }
-  .article-author-portrait { height: 180px; margin-top: 34px; border-radius: 60px 60px 12px 12px; box-shadow: 4px 4px 0 #0b57a3; }
+
+.article-share { max-width: 62%; }
+@media (max-width: 760px) {
+  .article-heading-layout { min-height: 0; }
+  .article-heading-copy { padding: 10px 0; }
+  .article-heading-copy h1 { max-width: 90%; min-height: 210px; font-size: clamp(54px, 11vw, 82px); line-height: .9; margin-bottom: 24px; -webkit-text-stroke-width: 3px; }
+  .article-heading-copy h1.article-title-long { font-size: clamp(40px, 9vw, 66px); overflow-wrap: anywhere; }
+  .article-author-portrait { top: -45px; bottom: auto; right: -4px; width: 44%; height: 280px; }
+  .article-heading-copy .article-deck, .article-heading-copy .article-byline, .article-share { max-width: 100%; }
   .article-share { gap: 6px; margin: 20px 0; }
   .article-share a, .article-share button { padding: 9px 12px; }
+  .article-heading-layout:not(:has(.article-author-portrait)) h1 { min-height: 0; }
 }
-@media (max-width: 380px) {
-  .article-heading-layout { grid-template-columns: minmax(0, 1fr) 85px; gap: 12px; }
-  .article-author-portrait { height: 145px; }
-}
-
-/* Ritratti sospesi in attesa di anteprima approvata; struttura conservata. */
-.article-author-portrait { display: none; }
-.article-heading-layout { display: block; }
-
