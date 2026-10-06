@@ -1,4 +1,16 @@
 (() => {
+  // Apply the same placement to existing articles and pages published by the CMS.
+  document.querySelectorAll(".article-post").forEach((article) => {
+    const body = article.querySelector(".article-body");
+    const related = article.querySelector(".article-related-content");
+    if (!body || !related) return;
+    const firstParagraph = Array.from(body.children).find((element) =>
+      element.tagName === "P" && element.textContent.trim()
+    );
+    if (firstParagraph) firstParagraph.after(related);
+    else body.prepend(related);
+    related.style.marginBottom = "1.55em";
+  });
   const contentKey = (item) => `${item.type}:${item.id}`;
   const typeName = (type) => ({ episode: "Puntata", article: "Articolo", song: "Canzone" }[type] || "Contenuto");
   Promise.all([fetch("/data/content-catalog.json").then((r) => r.ok ? r.json() : { items: [] }), fetch("/data/articles.json").then((r) => r.ok ? r.json() : [])]).then(([catalog, articles]) => {
