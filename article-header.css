@@ -24,6 +24,7 @@
   .article-heading-copy { padding: 10px 0; }
   .article-heading-copy h1 { max-width: 90%; min-height: 210px; font-size: clamp(54px, 11vw, 82px); line-height: .9; margin-bottom: 24px; -webkit-text-stroke-width: 3px; }
   .article-heading-copy h1.article-title-long { font-size: clamp(40px, 9vw, 66px); overflow-wrap: anywhere; }
+  .article-heading-layout:has(.article-author-portrait) .article-heading-copy h1.article-title-long { max-width: 52%; }
   .article-author-portrait { top: -45px; bottom: auto; right: -4px; width: 44%; height: 280px; }
   .article-heading-copy .article-deck, .article-heading-copy .article-byline, .article-share { max-width: 100%; }
   .article-share { gap: 6px; margin: 20px 0; }
