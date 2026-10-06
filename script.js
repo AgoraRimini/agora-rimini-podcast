@@ -74,7 +74,7 @@ if (thoughtsAnchor && !articlesSection) {
 }
 
 const quotesScript = document.createElement("script");
-quotesScript.src = "quotes.js?v=5";
+quotesScript.src = "quotes.js?v=6";
 quotesScript.onload = () => {
   if (!articlesSection) document.querySelector("#articoli")?.remove();
 
