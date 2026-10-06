@@ -1,7 +1,5 @@
-.article-post-header { max-width: 1040px; }
 .article-heading-layout { display: grid; grid-template-columns: minmax(0, 1fr) 240px; align-items: center; gap: 38px; }
 .article-heading-copy { min-width: 0; }
-.article-heading-copy h1 { font-size: clamp(60px, 8vw, 110px); overflow-wrap: anywhere; }
 .article-author-portrait { width: 100%; height: 360px; background-image: url('/assets/hero-hosts.webp'); background-size: auto 115%; background-repeat: no-repeat; border-radius: 120px 120px 18px 18px; box-shadow: 8px 8px 0 #0b57a3; border: 3px solid #fff; }
 .article-author-paolo { background-position: 21% 20%; }
 .article-author-fabio { background-position: 48% 20%; }
@@ -15,9 +13,7 @@
 .article-share-status:empty { display: none; }
 @media (max-width: 700px) {
   .article-heading-layout { grid-template-columns: minmax(0, 1fr) 110px; gap: 16px; align-items: start; }
-  .article-heading-copy h1 { font-size: clamp(42px, 10vw, 68px); line-height: .88; letter-spacing: -.04em; }
   .article-author-portrait { height: 180px; margin-top: 34px; border-radius: 60px 60px 12px 12px; box-shadow: 4px 4px 0 #0b57a3; }
-  .article-heading-copy .article-deck { font-size: 16px; }
   .article-share { gap: 6px; margin: 20px 0; }
   .article-share a, .article-share button { padding: 9px 12px; }
 }
@@ -25,3 +21,8 @@
   .article-heading-layout { grid-template-columns: minmax(0, 1fr) 85px; gap: 12px; }
   .article-author-portrait { height: 145px; }
 }
+
+/* Ritratti sospesi in attesa di anteprima approvata; struttura conservata. */
+.article-author-portrait { display: none; }
+.article-heading-layout { display: block; }
+
