@@ -384,4 +384,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+<url>
+  <loc>https://agorariminipodcast.it/articoli/il-mondo-non-e-una-tifoseria/</loc>
+  <lastmod>2026-10-06</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
 </urlset>
