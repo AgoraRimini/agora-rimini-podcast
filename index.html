@@ -45,7 +45,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="styles.css?v=18">
+  <link rel="stylesheet" href="latest-episode.css?v=1">
 </head>
 <body>
   <header class="site-header">
@@ -84,6 +85,19 @@
         </div>
         <p id="trailer-status" class="sr-only" aria-live="polite"></p>
       </div>
+      <aside class="hero-latest" aria-labelledby="latest-title" hidden>
+        <p class="hero-latest-label">Ultima puntata</p>
+        <h2 id="latest-title"></h2>
+        <div class="hero-latest-controls">
+          <button id="latest-play" class="latest-play" type="button" aria-label="Ascolta l’ultima puntata" aria-pressed="false"><img src="assets/icons/play-fill.svg" alt="" width="20" height="20"><span>Ascolta ora</span></button>
+          <input id="latest-seek" type="range" min="0" max="100" step="0.1" value="0" disabled aria-label="Posizione nella puntata">
+          <button class="latest-skip" data-skip="-15" type="button" aria-label="Torna indietro di 15 secondi" disabled><img src="assets/icons/arrow-counter-clockwise-bold.svg" alt="" width="28" height="28"><span>15</span></button>
+          <button class="latest-skip" data-skip="30" type="button" aria-label="Avanti di 30 secondi" disabled><img src="assets/icons/arrow-clockwise-bold.svg" alt="" width="28" height="28"><span>30</span></button>
+        </div>
+        <div class="hero-latest-footer"><output id="latest-time">0:00</output><a id="latest-link" href="/puntate/">Pagina puntata ↗</a></div>
+        <p id="latest-status" class="sr-only" aria-live="polite"></p>
+        <audio id="latest-audio" preload="none"></audio>
+      </aside>
       <a class="scroll-cue" href="#puntate" aria-label="Vai alle puntate">↓</a>
     </section>
 
@@ -253,6 +267,7 @@
     <div class="footer-bottom"><span>© <span id="year"></span> Agorà Rimini Podcast</span><span>Rimini · Italia</span><a href="https://www.spreaker.com/podcast/agora-rimini-podcast--5748998" target="_blank" rel="noreferrer">Spreaker ↗</a></div>
   </footer>
   <script defer src="https://cdn.embed.ly/player-0.1.0.min.js"></script>
-  <script defer src="script.js?v=10"></script>
+  <script defer src="script.js?v=11"></script>
+  <script defer src="latest-episode.js?v=1"></script>
 </body>
 </html>

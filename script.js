@@ -23,6 +23,7 @@ trailerButton?.addEventListener("click", () => {
     if (trailerStatus) trailerStatus.textContent = "Trailer in pausa.";
     return;
   }
+  document.dispatchEvent(new Event("agora:trailer-play"));
   trailerController.play();
   trailerButton.classList.add("is-playing");
   trailerButton.setAttribute("aria-pressed", "true");
@@ -35,7 +36,10 @@ trailerButton?.addEventListener("click", () => {
 if (trailerFrame && window.playerjs?.Player) {
   trailerController = new window.playerjs.Player(trailerFrame);
   trailerController.on("ready", () => trailerButton?.removeAttribute("disabled"));
-  trailerController.on("play", () => trailerButton?.classList.add("is-playing"));
+  trailerController.on("play", () => {
+    document.dispatchEvent(new Event("agora:trailer-play"));
+    trailerButton?.classList.add("is-playing");
+  });
   trailerController.on("pause", () => setTrailerStopped("Riprendi il trailer"));
   trailerController.on("ended", () => {
     setTrailerStopped("Riascolta il trailer");
@@ -135,4 +139,10 @@ releasePicks.forEach((pick) => {
     if (musicCurrentTitle) musicCurrentTitle.textContent = title;
     if (otherPlatformsLink && pick.dataset.hyperfollow) otherPlatformsLink.href = pick.dataset.hyperfollow;
   });
+});
+
+// Prevent the trailer and latest episode from playing over each other.
+document.addEventListener("agora:episode-play", () => {
+  trailerController?.pause();
+  setTrailerStopped("Riprendi il trailer");
 });
