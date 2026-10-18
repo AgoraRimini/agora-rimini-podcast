@@ -1,1 +1,16 @@
-{"name":"agora-editorial-api","main":"src/index.js","compatibility_date":"2026-09-21","vars":{"GITHUB_REPOSITORY":"AgoraRimini/agora-rimini-podcast","ALLOWED_ORIGIN":"https://agorariminipodcast.it"}}
+{
+  "name": "agora-editorial-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-21",
+  "vars": {
+    "GITHUB_REPOSITORY": "AgoraRimini/agora-rimini-podcast",
+    "ALLOWED_ORIGIN": "https://agorariminipodcast.it",
+    "MUSIC_ALLOWED_ORIGINS": "https://agorariminipodcast.it,https://www.agorariminipodcast.it,https://app.agorariminipodcast.it"
+  },
+  "r2_buckets": [
+    {
+      "binding": "MUSIC_BUCKET",
+      "bucket_name": "agora-audio"
+    }
+  ]
+}
