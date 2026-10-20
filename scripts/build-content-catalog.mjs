@@ -8,7 +8,7 @@ const episodeItems = JSON.parse(jsonText).mainEntity.itemListElement.map((entry)
   const url = new URL(entry.url).pathname;
   return { type: "episode", id: url.split("-").pop().replace(/\/$/, ""), title: entry.name, url };
 });
-const musicHtml = readFileSync("index.html", "utf8");
-const songs = [...musicHtml.matchAll(/class="release-pick[^>]*data-title="([^"]+)"\s+data-spotify="([^"]+)"[^>]*>/g)].map((match) => ({ type: "song", id: match[2], title: decode(match[1]), url: "/#musica" }));
+const musicCatalog = JSON.parse(readFileSync("data/content-catalog.json", "utf8"));
+const songs = musicCatalog.items.filter(item => item.type === "song");
 writeFileSync("data/content-catalog.json", JSON.stringify({ version: 1, items: [...episodeItems, ...songs] }, null, 2) + "\n");
 console.log(`Catalogo aggiornato: ${episodeItems.length} puntate, ${songs.length} canzoni.`);
