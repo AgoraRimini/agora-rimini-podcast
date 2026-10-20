@@ -7,7 +7,7 @@ export function editorDate(value) {
   return match[3] + "-" + String(months.indexOf(match[2]) + 1).padStart(2, "0") + "-" + match[1].padStart(2, "0");
 }
 export function safeEditorBody(html) {
-  const document = new DOMParser().parseFromString(html || "", "text/html");
+  const document = new DOMParser().parseFromString("<!doctype html><html><body>" + (html || "") + "</body></html>", "text/html");
   const allowed = new Set(["P","DIV","BR","STRONG","EM","B","I","U","H2","H3","H4","UL","OL","LI","BLOCKQUOTE","A"]);
   const clean = node => {
     if (node.nodeType === 3) return document.createTextNode(node.textContent);

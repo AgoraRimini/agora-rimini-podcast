@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '22'
       - name: Installa parser DOM per i test
-        run: npm install --prefix /tmp/agora-editor-test --no-audit --no-fund --ignore-scripts linkedom@0.18.12
+        run: npm install --prefix /tmp/agora-editor-test --no-audit --no-fund --ignore-scripts jsdom@26.1.0
       - name: Verifica sintassi e modifica articoli
         env:
           AGORA_TEST_DEPS: /tmp/agora-editor-test

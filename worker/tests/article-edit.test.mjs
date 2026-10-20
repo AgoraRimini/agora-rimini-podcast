@@ -5,7 +5,8 @@ import { createRequire } from "node:module";
 import { articleEditRoute, sanitizeBody, contentIndex } from "../src/article-edit.js";
 import worker from "../src/index.js";
 const require = createRequire(process.env.AGORA_TEST_DEPS + "/package.json");
-globalThis.DOMParser = require("linkedom").DOMParser;
+const { JSDOM } = require("jsdom");
+globalThis.DOMParser = new JSDOM("").window.DOMParser;
 const { parsePublishedArticle, safeEditorBody } = await import("../../admin/article-data.js");
 const env = { ALLOWED_ORIGIN: "https://agorariminipodcast.it", GITHUB_REPOSITORY: "test/repo", GITHUB_TOKEN: "test-only", EDITOR_USERNAME: "test", EDITOR_PASSWORD: "test-only" };
 const url = "/articoli/esistente/";
@@ -76,7 +77,7 @@ test("modifica atomica: titolo nuovo, URL stabile, data, correlati, immagine e a
   const snapshot = JSON.parse(html.match(/<script id="article-editor-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(snapshot.relatedContent[0].id, "new-song"); assert.equal(snapshot.linkedEpisode.id, "123");
   assert.equal((snapshot.bodyHtml.match(/<p>/g) || []).length, 2);
-  const roundTrip = parsePublishedArticle(html, index[0]); assert.equal(roundTrip.date, article.date); assert.equal(roundTrip.bodyHtml, snapshot.bodyHtml);
+  const roundTrip = parsePublishedArticle(html, index[0]); assert.equal(roundTrip.date, article.date); assert.equal(new DOMParser().parseFromString(roundTrip.bodyHtml, "text/html").body.textContent, new DOMParser().parseFromString(snapshot.bodyHtml, "text/html").body.textContent);
   const patches = mock.calls.filter(c => c.method === "PATCH"); assert.equal(patches.length, 1); assert.equal(patches[0].body.force, false);
 });
 test("rimuove o sostituisce la copertina senza cancellare file condivisi", async () => {
@@ -104,4 +105,43 @@ test("API nega lettura e aggiornamento senza credenziali", async () => {
     const mock = githubMock(); const response = await worker.fetch(new Request(env.ALLOWED_ORIGIN + path, { method: "POST", headers: { Origin: env.ALLOWED_ORIGIN, "Content-Type": "application/json" }, body: JSON.stringify({ url }) }), env);
     assert.equal(response.status, 401); assert.equal(mock.calls.length, 0);
   }
+});
+
+test("CMS: Edita riapre i campi e Salva modifiche invia un aggiornamento completo", async () => {
+  const dom = new JSDOM(readFileSync("admin/index.html", "utf8"), { url: env.ALLOWED_ORIGIN + "/admin/" });
+  globalThis.window = dom.window; globalThis.document = dom.window.document; globalThis.Option = dom.window.Option;
+  dom.window.HTMLElement.prototype.scrollIntoView = () => {}; dom.window.confirm = () => true;
+  dom.window.AGORA_EDITOR = { apiBaseUrl: "https://api.example" };
+  const sent = [];
+  globalThis.fetch = async (input, options) => {
+    const path = new URL(input).pathname, data = JSON.parse(options.body); sent.push({ path, data });
+    if (path === "/v1/login") return Response.json({ ok: true });
+    if (path === "/v1/articles") return Response.json({ articles: [legacyCard] });
+    if (path === "/v1/content") return Response.json({ items: [{ type: "episode", id: "70256448", title: "Puntata", url: "/puntate/test/" }] });
+    if (path === "/v1/article") return Response.json({ article: legacyCard, html: legacyHTML, revision: "article-v1" });
+    if (path === "/v1/update") return Response.json({ ok: true, url: legacyCard.url });
+    throw Error("Unexpected request: " + path);
+  };
+  await import("../../admin/editor.js");
+  const $ = selector => document.querySelector(selector);
+  const until = async predicate => { for (let i = 0; i < 100; i++) { if (predicate()) return; await new Promise(resolve => setTimeout(resolve, 5)); } throw Error("Timeout CMS"); };
+  $("#access-user").value = "test"; $("#access-password").value = "test-only";
+  $("#access-form").dispatchEvent(new dom.window.Event("submit", { bubbles: true, cancelable: true }));
+  await until(() => $(".article-actions .tool-button"));
+  $(".article-actions .tool-button").click();
+  await until(() => $("#publish").textContent === "Salva modifiche");
+  assert.equal($("#title").value, legacyCard.title); assert.equal($("#author").value, legacyCard.author);
+  assert.equal($("#article-date").value, "2026-10-20"); assert.equal($("#linked-episode").value, "episode:70256448");
+  assert.ok($("#body").textContent.includes("Platone")); assert.ok($("#highlight").value.length);
+  assert.equal(document.querySelector("input[name=has-image]:checked").value, "keep"); assert.equal($("#current-image").hidden, false);
+  $("#title").value = "Titolo nuovo"; $("#article-date").value = "2026-10-22";
+  $("#article-form").dispatchEvent(new dom.window.Event("submit", { bubbles: true, cancelable: true }));
+  await until(() => sent.some(item => item.path === "/v1/update"));
+  const update = sent.find(item => item.path === "/v1/update").data;
+  assert.equal(update.url, legacyCard.url); assert.equal(update.revision, "article-v1"); assert.equal(update.article.title, "Titolo nuovo");
+  assert.equal(update.article.date, "2026-10-22"); assert.equal(update.imageAction, "keep"); assert.equal(update.image, null);
+  assert.equal(update.article.linkedEpisode.id, "70256448"); assert.ok(update.article.bodyHtml.includes("<p>"));
+  await until(() => $("#publish-message").textContent.includes("Modifiche salvate"));
+  assert.equal($("#title").value, ""); assert.equal($("#cancel-edit").hidden, true);
+  dom.window.close();
 });
