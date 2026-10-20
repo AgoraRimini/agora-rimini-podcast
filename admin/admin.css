@@ -63,3 +63,7 @@
 .delete-button{flex:0 0 auto;padding:9px 11px;border:1px solid #bf2638;color:#a80e22;background:#fff;cursor:pointer;font:800 13px/1 "Barlow Condensed",sans-serif;letter-spacing:.05em;text-transform:uppercase}
 .delete-button:hover{color:#fff;background:#a80e22}
 @media(max-width:840px){.article-item{align-items:flex-start;flex-direction:column}.delete-button{width:100%}}
+
+.article-item .article-actions{display:flex;flex-wrap:wrap;gap:8px;flex:0 0 auto}
+#current-image{display:block;max-width:240px;max-height:180px;object-fit:contain;margin-top:14px}
+@media(max-width:840px){.article-item .article-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}.article-actions button{width:100%}}

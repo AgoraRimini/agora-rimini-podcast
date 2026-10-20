@@ -1,3 +1,4 @@
+// Deploy del Worker tramite il repository collegato a Cloudflare Builds.
 {
   "name": "agora-editorial-api",
   "main": "src/index.js",
