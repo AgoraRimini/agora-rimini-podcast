@@ -39,13 +39,14 @@
     "image": "/assets/articles/antisemitismo-o-anti-critica.jpg"
   },
   {
-    "title": "Ultra stupidità",
+    "title": "Ultrastupidità",
     "subtitle": "Quando un’etichetta smette di descrivere le idee e comincia a sostituirle.",
     "category": "Società",
     "author": "Paolo",
     "date": "20 settembre 2026",
     "url": "/articoli/ultra-stupidita/",
     "image": "/assets/articles/estrema-destra-1980-2026.jpg",
-    "imageAlt": "Confronto visivo tra la definizione di estrema destra nel 1980 e nel 2026"
+    "imageAlt": "Confronto visivo tra la definizione di estrema destra nel 1980 e nel 2026",
+    "dateISO": "2026-09-20"
   }
 ]
