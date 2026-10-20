@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 6 * * 1' # Lunedì; la sincronizzazione salta le settimane alterne.
 
 permissions:
   contents: read
@@ -31,6 +31,11 @@ jobs:
       - name: Verifica e sincronizza il catalogo musicale
         id: sync
         run: |
+          # GitHub cron non esprime intervalli di 14 giorni: esegui solo nelle settimane alterne.
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && (( ($(date -u +%s) / 604800) % 2 == 1 )); then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           node --check scripts/sync-music-catalog.mjs
           node --check music-player.js
           node scripts/sync-music-catalog.mjs
