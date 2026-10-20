@@ -1,7 +1,7 @@
 {
   "version": 1,
   "items": [
-        {
+    {
       "type": "episode",
       "id": "75552602",
       "title": "🎧DDL Anti semitismo o Anti Critica?🤔",
@@ -381,57 +381,42 @@
     },
     {
       "type": "song",
-      "id": "7DeR7lMto4uutyld48RvdF",
+      "id": "e1375500-977a-4a83-a30d-36a2220d5498",
       "title": "Mondo Ipocrisia",
-      "url": "/#musica"
+      "url": "/?song=e1375500-977a-4a83-a30d-36a2220d5498#musica",
+      "aliases": [
+        "7DeR7lMto4uutyld48RvdF"
+      ]
     },
     {
       "type": "song",
-      "id": "6wYFmnQ2xV52DzZfWQ0sN6",
+      "id": "04e2da04-0a3d-40fa-94b5-e9f81abf923b",
       "title": "Dio Incolore",
-      "url": "/#musica"
+      "url": "/?song=04e2da04-0a3d-40fa-94b5-e9f81abf923b#musica",
+      "aliases": [
+        "6wYFmnQ2xV52DzZfWQ0sN6"
+      ]
     },
     {
       "type": "song",
-      "id": "22WNkj2gLiOeS9751NsESf",
-      "title": "È per il tuo bene",
-      "url": "/#musica"
+      "id": "09291308-f722-459b-a390-5c9764608e2c",
+      "title": "E' per il tuo bene!",
+      "url": "/?song=09291308-f722-459b-a390-5c9764608e2c#musica",
+      "aliases": [
+        "22WNkj2gLiOeS9751NsESf"
+      ]
     },
     {
       "type": "song",
-      "id": "1mlPhFs32KfGYEMUoe4MbR",
-      "title": "Politicamente Corretto",
-      "url": "/#musica"
+      "id": "1b1a7946-6c42-46a5-a535-302998f24cd3",
+      "title": "Politicamente Scorretto",
+      "url": "/?song=1b1a7946-6c42-46a5-a535-302998f24cd3#musica"
     },
     {
       "type": "song",
-      "id": "3IJ3mcZmioNlfvemEQg5JI",
-      "title": "Grazie a loro",
-      "url": "/#musica"
-    },
-    {
-      "type": "song",
-      "id": "1RghQDZYmMVnckKEX9v2Ij",
-      "title": "Vota che ti passa",
-      "url": "/#musica"
-    },
-    {
-      "type": "song",
-      "id": "4lg81IM3UST6pEuyOx2yPO",
-      "title": "So Fucked",
-      "url": "/#musica"
-    },
-    {
-      "type": "song",
-      "id": "17lmMuXzmZpYSCuFdLIZhC",
-      "title": "A Natale puoi con noi",
-      "url": "/#musica"
-    },
-    {
-      "type": "song",
-      "id": "2i0FONnEjIBIbNF2Ouo7qp",
-      "title": "Fuori controllo",
-      "url": "/#musica"
+      "id": "0716c727-0ccc-4bfe-9a43-a94b1bd1486b",
+      "title": "The Great Dictator",
+      "url": "/?song=0716c727-0ccc-4bfe-9a43-a94b1bd1486b#musica"
     }
   ]
 }
