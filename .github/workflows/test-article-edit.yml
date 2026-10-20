@@ -1,0 +1,30 @@
+name: Verifica modifica articoli
+on:
+  push:
+    branches: [main, feat/edit-published-articles]
+    paths:
+      - 'admin/**'
+      - 'worker/**'
+      - '.github/workflows/test-article-edit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Installa parser DOM per i test
+        run: npm install --prefix /tmp/agora-editor-test --no-audit --no-fund --ignore-scripts linkedom@0.18.12
+      - name: Verifica sintassi e modifica articoli
+        env:
+          AGORA_TEST_DEPS: /tmp/agora-editor-test
+        run: |
+          node --check admin/editor.js
+          node --check admin/article-data.js
+          node --check worker/src/index.js
+          node --check worker/src/article-edit.js
+          node --test worker/tests/article-edit.test.mjs worker/tests/music.test.mjs
