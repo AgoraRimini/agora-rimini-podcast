@@ -114,6 +114,9 @@ articleForm.addEventListener("submit", async event => {
   if (imageChoice === "yes" && !file) { setMessage(publishMessage, "Carica l’immagine oppure scegli un’altra opzione.", "error"); return; }
   const publish = $("#publish"); publish.disabled = true;
   const editing = editingArticle;
+  const controls = [...articleForm.querySelectorAll("input, select, textarea, button")];
+  const disabled = controls.map(control => control.disabled);
+  controls.forEach(control => { control.disabled = true; }); bodyEditor.contentEditable = "false";
   setMessage(publishMessage, editing ? "Salvataggio modifiche…" : "Pubblicazione in corso…");
   try {
     const episode = findItem($("#linked-episode").value);
@@ -131,5 +134,5 @@ articleForm.addEventListener("submit", async event => {
     setMessage(publishMessage, editing ? "Modifiche salvate. Saranno online entro pochi minuti." : "Articolo pubblicato. Sarà online entro pochi minuti.", "success");
     await Promise.all([loadArticles(), loadContent()]);
   } catch (error) { setMessage(publishMessage, error.message, "error"); }
-  finally { publish.disabled = false; }
+  finally { controls.forEach((control, index) => { control.disabled = disabled[index]; }); bodyEditor.contentEditable = "true"; publish.disabled = false; }
 });
