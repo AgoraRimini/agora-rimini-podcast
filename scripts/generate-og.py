@@ -1,5 +1,6 @@
 """Generate article sharing cards and patch only social tags before Pages deploy."""
 import html
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -110,10 +111,10 @@ def render(article, output):
     card.convert('RGB').save(output, 'JPEG', quality=92, optimize=True, subsampling=0)
 
 
-def patch_meta(source, slug, title):
+def patch_meta(source, slug, title, image_name=None):
     # Remove only tags managed here. Keep descriptions, player and article markup intact.
     managed = {'og:image', 'og:image:width', 'og:image:height', 'og:image:alt',
-               'og:image:type', 'twitter:card', 'twitter:image'}
+               'og:image:type', 'og:image:secure_url', 'twitter:card', 'twitter:image', 'twitter:image:alt'}
     def keep(match):
         attrs = dict((key.lower(), value) for key, _, value in
                      re.findall(r'([\w:-]+)\s*=\s*([\"\'])(.*?)\2', match.group(), re.S))
@@ -121,19 +122,25 @@ def patch_meta(source, slug, title):
     source = re.sub(r'\s*<meta\b[^>]*>', keep, source, flags=re.I)
     head, tail = re.split(r'(?i)(?=</head\s*>)', source, maxsplit=1)
     source = re.sub(r'(?m)^[ \t]+$', '', head) + tail
-    url = f'{SITE}/assets/og/{slug}.jpg'
+    filename = image_name or f'{slug}.jpg'
+    url = f'{SITE}/assets/og/{filename}'
     tags = '\n'.join([
         f'<meta property="og:image" content="{url}">',
+        f'<meta property="og:image:secure_url" content="{url}">',
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
         '<meta property="og:image:type" content="image/jpeg">',
         f'<meta property="og:image:alt" content="{html.escape(title, quote=True)}">',
         '<meta name="twitter:card" content="summary_large_image">',
         f'<meta name="twitter:image" content="{url}">',
+        f'<meta name="twitter:image:alt" content="{html.escape(title, quote=True)}">',
     ])
     if not re.search(r'</head\s*>', source, re.I):
         raise ValueError('Intestazione HTML assente')
-    return re.sub(r'\s*</head\s*>', lambda _: '\n' + tags + '\n</head>', source, count=1, flags=re.I)
+    # Put image declarations before styles and deferred scripts for simple crawlers.
+    anchor = r'(<meta\b[^>]*charset[^>]*>)' if re.search(r'<meta\b[^>]*charset', source, re.I) else r'(<head\b[^>]*>)'
+    source = re.sub(anchor + r'\s*', lambda m: m[1], source, count=1, flags=re.I)
+    return re.sub(anchor, lambda m: m[0] + '\n' + tags + '\n', source, count=1, flags=re.I)
 
 
 def main():
@@ -146,8 +153,12 @@ def main():
         page = ROOT / 'articoli' / slug / 'index.html'
         # Worker commits the HTML before updating the article index.
         # Only entries already present in the index are deployed as complete articles.
-        render(article, ROOT / 'assets/og' / f'{slug}.jpg')
-        page.write_text(patch_meta(page.read_text(), slug, article['title']))
+        output = ROOT / 'assets/og' / f'{slug}.jpg'
+        render(article, output)
+        digest = hashlib.sha256(output.read_bytes()).hexdigest()[:12]
+        image_name = f'{slug}-{digest}.jpg'
+        output.with_name(image_name).write_bytes(output.read_bytes())
+        page.write_text(patch_meta(page.read_text(), slug, article['title'], image_name))
         print(f'Card pronta: {slug} (1200×630)')
 
 
