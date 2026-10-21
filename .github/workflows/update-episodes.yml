@@ -34,12 +34,12 @@ jobs:
 
       - name: Pubblica gli aggiornamenti
         run: |
-          if git diff --quiet -- puntate sitemap.xml; then
+          git add -A -- puntate sitemap.xml
+          if git diff --cached --quiet -- puntate sitemap.xml; then
             echo "Nessun aggiornamento."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add puntate sitemap.xml
           git commit -m "Aggiorna pagine puntate e sitemap"
           git push
