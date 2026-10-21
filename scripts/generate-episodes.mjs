@@ -86,6 +86,20 @@ if (!episodes.length) throw new Error("Il feed non contiene puntate utilizzabili
 
 const category = (episode) => specials.has(episode.id) ? "Puntata speciale" : interviews.has(episode.id) ? "Intervista" : "Puntata";
 const pageSlug = (episode) => slugify(episode.title) + "-" + episode.id;
+const legacySlug = (episode) => slugify(episode.title);
+const aliasCounts = new Map();
+for (const episode of episodes) {
+  const alias = legacySlug(episode);
+  aliasCounts.set(alias, (aliasCounts.get(alias) || 0) + 1);
+}
+const legacyRedirectHtml = (canonical) => `<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow">
+<link rel="canonical" href="${canonical}"><meta http-equiv="refresh" content="0;url=${canonical}">
+<title>Puntata spostata | Agorà Rimini Podcast</title></head>
+<body><p>La puntata è disponibile all'indirizzo aggiornato:
+<a href="${canonical}">Apri la puntata</a>.</p>
+<script>location.replace(${JSON.stringify(canonical)})</script></body></html>`;
+
 const shortDescription = (episode) => (episode.description || "Ascolta questa puntata di Agorà Rimini Podcast.").slice(0, 260);
 const json = (value) => JSON.stringify(value).replace(/</g, "\\u003c");
 
@@ -150,6 +164,14 @@ ${description ? `<p class="lead">${escapeHtml(description)}</p>` : ""}
   const file = join(OUTPUT_DIR, slug, "index.html");
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);
+  // Preserve historical title-only URLs without duplicating indexable episode pages.
+  const alias = legacySlug(episode);
+  if (alias && alias !== slug && aliasCounts.get(alias) === 1) {
+    const aliasFile = join(OUTPUT_DIR, alias, "index.html");
+    mkdirSync(dirname(aliasFile), { recursive: true });
+    writeFileSync(aliasFile, legacyRedirectHtml(canonical));
+  }
+
 }
 
 const cards = episodes.map((episode) => `<a class="card" href="/puntate/${pageSlug(episode)}/"><small>${category(episode)} · ${escapeHtml(humanDate(episode.pubDate))}</small><h2>${escapeHtml(episode.title)}</h2><p>${escapeHtml(shortDescription(episode).slice(0, 150))}</p></a>`).join("");
