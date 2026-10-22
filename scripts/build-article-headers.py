@@ -43,12 +43,19 @@ def enhance(source, article):
             attrs += ' class="article-title-long"'
         return '<h1' + attrs + '>' + match[2] + '</h1>'
     source = re.sub(r'<h1([^>]*)>(.*?)</h1>', title_size, source, flags=re.S)
+    # Search snippet: keep editorial headline and subtitle unchanged.
+    seo_description = str(article.get("seoDescription") or article.get("subtitle") or "").strip()
+    if seo_description:
+        escaped = html.escape(seo_description, quote=True)
+        for key in ('name="description"', 'property="og:description"', 'name="twitter:description"'):
+            tag = re.compile(r'(<meta\s+' + re.escape(key) + r'\s+content=")[^"]*(")', re.I)
+            source = tag.sub(lambda match: match[1] + escaped + match[2], source, count=1)
     # Structured data is derived from the published CMS record, not authored text.
     schema = {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": article["title"],
-        "description": article.get("subtitle", ""),
+        "description": seo_description,
         "mainEntityOfPage": "https://agorariminipodcast.it" + article["url"],
         "url": "https://agorariminipodcast.it" + article["url"],
         "inLanguage": "it-IT",
@@ -58,7 +65,7 @@ def enhance(source, article):
     }
     if article.get("image"):
         schema["image"] = "https://agorariminipodcast.it" + article["image"]
-    if re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", article.get("dateISO", "")):
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", article.get("dateISO", "")):
         schema["datePublished"] = article["dateISO"]
     block = '<script id="agora-article-schema" type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace("<", "\\u003c") + '</script>'
     source = re.sub(r'<script id="agora-article-schema" type="application/ld\\+json">.*?</script>', '', source, flags=re.S)
