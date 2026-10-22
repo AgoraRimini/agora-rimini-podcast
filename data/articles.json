@@ -7,7 +7,8 @@
     "date": "20 ottobre 2026",
     "url": "/articoli/il-potere-di-mantenere-il-potere/",
     "image": "/assets/articles/il-potere-di-mantenere-il-potere.png",
-    "dateISO": "2026-10-20"
+    "dateISO": "2026-10-20",
+    "seoDescription": "Come si conserva il potere politico? Una riflessione sui meccanismi del comando, sulle élite e sul rapporto tra governanti e cittadini."
   },
   {
     "category": "Pensieri liberi",
@@ -17,7 +18,8 @@
     "date": "6 ottobre 2026",
     "url": "/articoli/il-mondo-non-e-una-tifoseria/",
     "image": "/assets/articles/il-mondo-non-e-una-tifoseria.png",
-    "dateISO": "2026-10-06"
+    "dateISO": "2026-10-06",
+    "seoDescription": "Geopolitica e schieramenti: perché il confronto tra Occidente e Oriente rischia di diventare una tifoseria invece di un'analisi critica."
   },
   {
     "category": "Pensieri liberi",
@@ -27,7 +29,8 @@
     "date": "5 ottobre 2026",
     "url": "/articoli/la-distopia-europea/",
     "image": "/assets/articles/la-distopia-europea.png",
-    "dateISO": "2026-10-05"
+    "dateISO": "2026-10-05",
+    "seoDescription": "La società europea tra controllo, conformismo e cambiamenti nei rapporti umani: una riflessione critica sulle contraddizioni dell'Europa."
   },
   {
     "category": "Politica",
@@ -36,7 +39,8 @@
     "subtitle": "IHRA, JDA e il DDL che divide politica, giornalisti e associazioni",
     "date": "3 ottobre 2026",
     "url": "/articoli/antisemitismo-o-anti-critica/",
-    "image": "/assets/articles/antisemitismo-o-anti-critica.jpg"
+    "image": "/assets/articles/antisemitismo-o-anti-critica.jpg",
+    "seoDescription": "DDL antisemitismo e libertà di critica: differenze tra definizioni IHRA e JDA e interrogativi sul rapporto fra legge e libertà di espressione."
   },
   {
     "title": "Ultrastupidità",
@@ -47,6 +51,7 @@
     "url": "/articoli/ultra-stupidita/",
     "image": "/assets/articles/estrema-destra-1980-2026.jpg",
     "imageAlt": "Confronto visivo tra la definizione di estrema destra nel 1980 e nel 2026",
-    "dateISO": "2026-09-20"
+    "dateISO": "2026-09-20",
+    "seoDescription": "Estrema destra, etichette politiche e dibattito pubblico: quando le categorie ideologiche sostituiscono l'analisi delle idee."
   }
 ]
