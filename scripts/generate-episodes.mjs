@@ -197,11 +197,11 @@ await import("./build-content-catalog.mjs");
 
 const articles = JSON.parse(readFileSync("data/articles.json", "utf8"));
 const articleUrls = articles.filter((article) =>
-  /^\\/articoli\\/[a-z0-9-]+\\/$/.test(article.url) &&
+  /^\/articoli\/[a-z0-9-]+\/$/.test(article.url) &&
   existsSync(join(article.url.slice(1), "index.html"))
 ).map((article) => ({
   loc: SITE_URL + article.url,
-  lastmod: /^\\d{4}-\\d{2}-\\d{2}$/.test(article.dateISO || "") ? article.dateISO : undefined,
+  lastmod: /^\d{4}-\d{2}-\d{2}$/.test(article.dateISO || "") ? article.dateISO : undefined,
   priority: "0.8", changefreq: "monthly"
 }));
 const now = new Date().toISOString().slice(0, 10);
