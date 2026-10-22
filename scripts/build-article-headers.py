@@ -43,6 +43,26 @@ def enhance(source, article):
             attrs += ' class="article-title-long"'
         return '<h1' + attrs + '>' + match[2] + '</h1>'
     source = re.sub(r'<h1([^>]*)>(.*?)</h1>', title_size, source, flags=re.S)
+    # Structured data is derived from the published CMS record, not authored text.
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": article["title"],
+        "description": article.get("subtitle", ""),
+        "mainEntityOfPage": "https://agorariminipodcast.it" + article["url"],
+        "url": "https://agorariminipodcast.it" + article["url"],
+        "inLanguage": "it-IT",
+        "author": {"@type": "Person", "name": article.get("author", "")},
+        "publisher": {"@type": "Organization", "name": "Agorà Rimini Podcast",
+                      "logo": {"@type": "ImageObject", "url": "https://agorariminipodcast.it/assets/logo.jpg"}},
+    }
+    if article.get("image"):
+        schema["image"] = "https://agorariminipodcast.it" + article["image"]
+    if re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", article.get("dateISO", "")):
+        schema["datePublished"] = article["dateISO"]
+    block = '<script id="agora-article-schema" type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace("<", "\\u003c") + '</script>'
+    source = re.sub(r'<script id="agora-article-schema" type="application/ld\\+json">.*?</script>', '', source, flags=re.S)
+    source = source.replace('</head>', block + '</head>', 1)
     source = source.replace('article-header.css?v=1', 'article-header.css?v=2')
     if 'article-header.css' not in source:
         source = source.replace('</head>', '<link rel="stylesheet" href="/article-header.css?v=2"><script src="/article-share.js?v=1" defer></script></head>', 1)
