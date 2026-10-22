@@ -1,4 +1,4 @@
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, rmSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const FEED_URL = "https://www.spreaker.com/show/5748998/episodes/feed";
@@ -195,11 +195,20 @@ const listHtml = head({
 writeFileSync(join(OUTPUT_DIR, "index.html"), listHtml);
 await import("./build-content-catalog.mjs");
 
+const articles = JSON.parse(readFileSync("data/articles.json", "utf8"));
+const articleUrls = articles.filter((article) =>
+  /^\\/articoli\\/[a-z0-9-]+\\/$/.test(article.url) &&
+  existsSync(join(article.url.slice(1), "index.html"))
+).map((article) => ({
+  loc: SITE_URL + article.url,
+  lastmod: /^\\d{4}-\\d{2}-\\d{2}$/.test(article.dateISO || "") ? article.dateISO : undefined,
+  priority: "0.8", changefreq: "monthly"
+}));
 const now = new Date().toISOString().slice(0, 10);
 const urls = [
   { loc: SITE_URL + "/", priority: "1.0", changefreq: "weekly" },
   { loc: listCanonical, priority: "0.9", changefreq: "weekly" },
-  ...episodes.map((episode) => ({
+  ...articleUrls,\n  ...episodes.map((episode) => ({
     loc: SITE_URL + "/puntate/" + pageSlug(episode) + "/",
     lastmod: isoDate(episode.pubDate).slice(0, 10), priority: "0.7", changefreq: "monthly"
   }))
