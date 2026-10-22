@@ -68,7 +68,7 @@ def enhance(source, article):
     if re.fullmatch(r"\d{4}-\d{2}-\d{2}", article.get("dateISO", "")):
         schema["datePublished"] = article["dateISO"]
     block = '<script id="agora-article-schema" type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace("<", "\\u003c") + '</script>'
-    source = re.sub(r'<script id="agora-article-schema" type="application/ld\\+json">.*?</script>', '', source, flags=re.S)
+    source = re.sub(r'<script id="agora-article-schema" type="application/ld\+json">.*?</script>', '', source, flags=re.S)
     source = source.replace('</head>', block + '</head>', 1)
     source = source.replace('article-header.css?v=1', 'article-header.css?v=2')
     if 'article-header.css' not in source:
