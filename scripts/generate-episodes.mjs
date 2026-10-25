@@ -1,10 +1,10 @@
-import { mkdirSync, rmSync, writeFileSync, readFileSync, existsSync } from "node:fs";
+import { mkdirSync, readdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const FEED_URL = "https://www.spreaker.com/show/5748998/episodes/feed";
 const SITE_URL = "https://agorariminipodcast.it";
 const OUTPUT_DIR = "puntate";
-const RECENT_LIMIT = 50;
+const ARCHIVE_FILE = "data/episodes.json";
 
 const specials = new Set(["73400955","70256448","67090518","66749489","66192868","63768712","53271819"]);
 const interviews = new Set([
@@ -66,26 +66,58 @@ const rawItems = [...xml.matchAll(/<item(?:\s[^>]*)?>([\s\S]*?)<\/item>/gi)].map
 const allEpisodes = rawItems.map((item) => {
   const link = readTag(item, "link");
   const guid = readTag(item, "guid");
-  const id = (link.match(/--(\d+)(?:\D|$)/) || guid.match(/episode\/(\d+)/i) || guid.match(/(\d{6,})/))?.[1] || "";
+  // The RSS link becomes our website URL after a custom page is set in Spreaker.
+  const id = (guid.match(/episode\/(\d+)(?:\D|$)/i)
+    || item.match(/<enclosure\b[^>]*\burl=["'][^"']*\/episode\/(\d+)\//i)
+    || link.match(/--(\d+)(?:\D|$)/))?.[1] || "";
   const title = stripHtml(readTag(item, "title"));
   const rawDescription = readTag(item, "description");
   const image = item.match(/<itunes:image[^>]+href=["']([^"']+)["']/i)?.[1] || "";
   return {
-    id, title, link, description: stripHtml(rawDescription), pubDate: readTag(item, "pubDate"),
+    id, title, link: "https://www.spreaker.com/episode/" + id, description: stripHtml(rawDescription), pubDate: readTag(item, "pubDate"),
     duration: readTag(item, "itunes:duration"), image
   };
 }).filter((episode) => episode.id && episode.title);
 
-const selectedMap = new Map();
-allEpisodes.slice(0, RECENT_LIMIT).forEach((episode) => selectedMap.set(episode.id, episode));
-allEpisodes.filter((episode) => specials.has(episode.id) || interviews.has(episode.id))
-  .forEach((episode) => selectedMap.set(episode.id, episode));
-
-const episodes = [...selectedMap.values()].sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-if (!episodes.length) throw new Error("Il feed non contiene puntate utilizzabili.");
+if (!allEpisodes.length) throw new Error("Il feed non contiene puntate utilizzabili.");
+const archive = new Map();
+// Recover previously published pages before importing the feed. Never remove them.
+if (existsSync(OUTPUT_DIR)) {
+  for (const entry of readdirSync(OUTPUT_DIR, { withFileTypes: true })) {
+    if (!entry.isDirectory() || !/^[a-z0-9-]+-\d+$/.test(entry.name)) continue;
+    const file = join(OUTPUT_DIR, entry.name, "index.html");
+    if (!existsSync(file)) continue;
+    const html = readFileSync(file, "utf8");
+    const source = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
+    if (!source) continue;
+    const ld = JSON.parse(source);
+    if (ld["@type"] !== "PodcastEpisode") continue;
+    const id = entry.name.match(/-(\d+)$/)[1];
+    archive.set(id, {
+      id, slug: entry.name, title: ld.name, description: ld.description || "",
+      pubDate: ld.datePublished || "", duration: ld.duration || "", image: ld.image || "",
+      link: "https://www.spreaker.com/episode/" + id
+    });
+  }
+}
+if (existsSync(ARCHIVE_FILE)) {
+  for (const episode of JSON.parse(readFileSync(ARCHIVE_FILE, "utf8"))) {
+    if (!/^\d+$/.test(episode.id) || !/^[a-z0-9-]+$/.test(episode.slug) || !episode.slug.endsWith("-" + episode.id)) {
+      throw new Error("Voce non valida nell'archivio permanente delle puntate.");
+    }
+    archive.set(episode.id, episode);
+  }
+}
+for (const episode of allEpisodes) {
+  const existing = archive.get(episode.id);
+  archive.set(episode.id, {
+    ...episode, slug: existing?.slug || slugify(episode.title) + "-" + episode.id
+  });
+}
+const episodes = [...archive.values()].sort((a, b) => (new Date(b.pubDate) - new Date(a.pubDate)) || Number(b.id) - Number(a.id));
 
 const category = (episode) => specials.has(episode.id) ? "Puntata speciale" : interviews.has(episode.id) ? "Intervista" : "Puntata";
-const pageSlug = (episode) => slugify(episode.title) + "-" + episode.id;
+const pageSlug = (episode) => episode.slug;
 const legacySlug = (episode) => slugify(episode.title);
 const aliasCounts = new Map();
 for (const episode of episodes) {
@@ -171,7 +203,6 @@ const head = ({ title, description, canonical, image, type = "article", ld }) =>
 <meta name="twitter:image" content="${image || SITE_URL + "/assets/hero-hosts.webp"}">
 <script type="application/ld+json">${json(ld)}</script><style>${sharedStyle}</style></head>`;
 
-rmSync(OUTPUT_DIR, { recursive: true, force: true });
 mkdirSync(OUTPUT_DIR, { recursive: true });
 
 for (const [index, episode] of episodes.entries()) {
@@ -202,13 +233,14 @@ ${topicBlock(topics, related)}
 <footer>© Agorà Rimini Podcast · Rimini, Italia</footer></body></html>`;
   const file = join(OUTPUT_DIR, slug, "index.html");
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, html);
+  // Existing episode content is preserved byte for byte.
+  if (!existsSync(file)) writeFileSync(file, html);
   // Preserve historical title-only URLs without duplicating indexable episode pages.
   const alias = legacySlug(episode);
   if (alias && alias !== slug && aliasCounts.get(alias) === 1) {
     const aliasFile = join(OUTPUT_DIR, alias, "index.html");
     mkdirSync(dirname(aliasFile), { recursive: true });
-    writeFileSync(aliasFile, legacyRedirectHtml(canonical));
+    if (!existsSync(aliasFile)) writeFileSync(aliasFile, legacyRedirectHtml(canonical));
   }
 
 }
@@ -226,10 +258,10 @@ const listLd = {
 };
 const listHtml = head({
   title: "Puntate | Agorà Rimini Podcast",
-  description: "Ascolta le ultime 50 puntate, gli speciali e le interviste di Agorà Rimini Podcast.",
+  description: "Ascolta tutte le puntate, gli speciali e le interviste di Agorà Rimini Podcast.",
   canonical: listCanonical, type: "website", ld: listLd
 }) + `<body><header class="top"><a href="/"><img src="/assets/logo.jpg" alt="Agorà Rimini Podcast"></a><span>I Tre Folli Idealisti</span></header>
-<main class="wrap"><p class="kicker">Archivio audio</p><h1>Tutte le puntate</h1><p class="lead">Le ultime 50 uscite, le puntate speciali e le nostre interviste. L’archivio si aggiorna automaticamente dal feed ufficiale.</p><div class="grid">${cards}</div></main>
+<main class="wrap"><p class="kicker">Archivio audio</p><h1>Tutte le puntate</h1><p class="lead">Tutte le uscite, le puntate speciali e le nostre interviste. L’archivio si aggiorna automaticamente dal feed ufficiale.</p><div class="grid">${cards}</div></main>
 <footer>© Agorà Rimini Podcast · Rimini, Italia</footer></body></html>`;
 writeFileSync(join(OUTPUT_DIR, "index.html"), listHtml);
 await import("./build-content-catalog.mjs");
@@ -247,7 +279,8 @@ const now = new Date().toISOString().slice(0, 10);
 const urls = [
   { loc: SITE_URL + "/", priority: "1.0", changefreq: "weekly" },
   { loc: listCanonical, priority: "0.9", changefreq: "weekly" },
-  ...articleUrls,\n  ...episodes.map((episode) => ({
+  ...articleUrls,
+  ...episodes.map((episode) => ({
     loc: SITE_URL + "/puntate/" + pageSlug(episode) + "/",
     lastmod: isoDate(episode.pubDate).slice(0, 10), priority: "0.7", changefreq: "monthly"
   }))
@@ -263,4 +296,6 @@ ${urls.map((entry) => `  <url>
 </urlset>
 `;
 writeFileSync("sitemap.xml", sitemap);
+mkdirSync(dirname(ARCHIVE_FILE), { recursive: true });
+writeFileSync(ARCHIVE_FILE, JSON.stringify(episodes, null, 2) + "\n");
 console.log("Generate " + episodes.length + " pagine puntata e sitemap.xml");

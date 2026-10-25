@@ -2,15 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://agorariminipodcast.it/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://agorariminipodcast.it/puntate/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/articoli/il-potere-di-mantenere-il-potere/</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/articoli/il-mondo-non-e-una-tifoseria/</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/articoli/la-distopia-europea/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/articoli/antisemitismo-o-anti-critica/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/articoli/ultra-stupidita/</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/il-rumore-di-milano-il-silenzio-del-sud-75974214/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://agorariminipodcast.it/puntate/hera-brucia-tutto-governo-ladro-75793653/</loc>
@@ -319,8 +355,176 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://agorariminipodcast.it/puntate/c-hera-una-volta-l-immondizia-63768521/</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/matteo-egocentrico-angelini-63514624/</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/dissimo-chiesimo-ebbimo-63227261/</loc>
+    <lastmod>2024-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/il-patriarcato-e-il-problema-63149719/</loc>
+    <lastmod>2024-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/benvenuti-nella-cccr-63006148/</loc>
+    <lastmod>2024-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/i-dem-stanno-letteralmente-impazzendo-62779379/</loc>
+    <lastmod>2024-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/le-vie-di-uscita-secondo-la-ia-62598320/</loc>
+    <lastmod>2024-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/chat-gpt-odia-l-umanita-forse-62522194/</loc>
+    <lastmod>2024-10-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/allerta-rossa-allerta-comun-62478199/</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/israele-hai-rotto-le-palle-62363082/</loc>
+    <lastmod>2024-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/we-are-back-62274525/</loc>
+    <lastmod>2024-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/benvenuti-alla-festa-dell-unit-60792754/</loc>
+    <lastmod>2024-07-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/viviamo-l-era-dell-assurdo-60635585/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/assange-libero-bene-chi-ha-vinto-davvero-60571614/</loc>
+    <lastmod>2024-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/si-schiuma-ma-kp3-non-ci-spaventa-60482302/</loc>
+    <lastmod>2024-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/il-dietro-elezioni-60404330/</loc>
+    <lastmod>2024-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/mastro-ceppetta-60333059/</loc>
+    <lastmod>2024-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://agorariminipodcast.it/puntate/intervista-matteo-angelini-3verucchio-60256336/</loc>
     <lastmod>2024-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/guerrieriiiiii-60191031/</loc>
+    <lastmod>2024-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/toti-e-i-numeri-del-lotto-quasi-60101458/</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/ministero-della-verita-59983570/</loc>
+    <lastmod>2024-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/astronzeneca-59882705/</loc>
+    <lastmod>2024-05-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/il-cambiamento-di-stagione-ci-fa-male-59708486/</loc>
+    <lastmod>2024-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/benvenuti-a-tuttu-i-progressisti-sono-davvero-il-futuro-59616556/</loc>
+    <lastmod>2024-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/salis-speranza-fileni-e-val-marecchia-cos-hanno-in-comune-carenza-di-democrazi-59352239/</loc>
+    <lastmod>2024-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/neom-smart-city-e-dintorni-59200274/</loc>
+    <lastmod>2024-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/uso-la-mia-testa-quindi-sono-complottista-59008034/</loc>
+    <lastmod>2024-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/va-tutto-a-rotoli-58917742/</loc>
+    <lastmod>2024-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/aspettandolo-al-bar-58744332/</loc>
+    <lastmod>2024-02-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -331,14 +535,128 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://agorariminipodcast.it/puntate/chiacchiere-da-bar-puntata-test-58479793/</loc>
+    <lastmod>2024-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://agorariminipodcast.it/puntate/intervista-al-presidente-del-comitato-no-alla-nuova-statale-16-adriatica-tutel-58479511/</loc>
     <lastmod>2024-01-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://agorariminipodcast.it/puntate/ci-spiano-per-la-nostra-sicurezza-58409556/</loc>
+    <lastmod>2024-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/basta-sensazionalismo-nella-controinformazione-58296987/</loc>
+    <lastmod>2024-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/abbiamo-imparato-che-58225316/</loc>
+    <lastmod>2024-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/patriarcalmente-agora-rimini-58039206/</loc>
+    <lastmod>2023-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/tea-tecniche-evoluzione-assistita-57446768/</loc>
+    <lastmod>2023-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/electric-agora-57384307/</loc>
+    <lastmod>2023-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/bastone-e-carota-per-la-giunta-di-rimini-57242322/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/il-poutpurri-che-ci-piace-57018026/</loc>
+    <lastmod>2023-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/carradori-al-consiglio-comunale-di-rimini-56917137/</loc>
+    <lastmod>2023-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/hai-la-faccia-da-pirola-56832063/</loc>
+    <lastmod>2023-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/delatori-nostrani-56754700/</loc>
+    <lastmod>2023-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/finale-di-stagione-56467893/</loc>
+    <lastmod>2023-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/fa-caldo-bis-56407177/</loc>
+    <lastmod>2023-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/caldo-killer-56283722/</loc>
+    <lastmod>2023-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/al-lupo-al-lupo-56192818/</loc>
+    <lastmod>2023-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/parliamo-di-monethica-56117375/</loc>
+    <lastmod>2023-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/la-baguette-56043906/</loc>
+    <lastmod>2023-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://agorariminipodcast.it/puntate/non-si-lascia-nulla-in-sospeso-55805524/</loc>
     <lastmod>2023-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/selezione-mega-mix-55024740/</loc>
+    <lastmod>2023-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -361,8 +679,32 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://agorariminipodcast.it/puntate/serata-complottara-54023542/</loc>
+    <lastmod>2023-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://agorariminipodcast.it/puntate/parliamo-con-ultima-generazione-53943457/</loc>
     <lastmod>2023-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/anello-verde-e-citta-15-min-roma-53857251/</loc>
+    <lastmod>2023-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/manifestazione-a-pesaro-no-biolab-53781968/</loc>
+    <lastmod>2023-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/aggiornamenti-vari-ed-eventuali-53698998/</loc>
+    <lastmod>2023-04-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -373,8 +715,38 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://agorariminipodcast.it/puntate/pesaro-1-maggio-manifestazione-rimini-cancelliamo-murales-53478184/</loc>
+    <lastmod>2023-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/utero-in-affitto-comunita-lgbtqia-cosa-ne-pensiamo-53344925/</loc>
+    <lastmod>2023-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://agorariminipodcast.it/puntate/trentennio-della-covidata-53271819/</loc>
     <lastmod>2023-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/fidati-della-scienza-cit-burioni-52856255/</loc>
+    <lastmod>2023-02-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/giornata-della-verita-52781275/</loc>
+    <lastmod>2023-02-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/sanremo-2023-pura-propaganda-liberal-progressista-52710350/</loc>
+    <lastmod>2023-02-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -385,38 +757,51 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://agorariminipodcast.it/puntate/biolabs-bsl-3-in-costruzione-a-pesaro-52571910/</loc>
+    <lastmod>2023-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://agorariminipodcast.it/puntate/discutiamo-con-il-dott-corrado-paolizzi-52509702/</loc>
     <lastmod>2023-01-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://agorariminipodcast.it/articoli/il-potere-di-mantenere-il-potere/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <loc>https://agorariminipodcast.it/puntate/andavo-a-30-all-ora-per-salvar-gaia-mia-52445688/</loc>
+    <lastmod>2023-01-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://agorariminipodcast.it/articoli/il-mondo-non-e-una-tifoseria/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <loc>https://agorariminipodcast.it/puntate/the-covid-is-back-52383265/</loc>
+    <lastmod>2023-01-08</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://agorariminipodcast.it/articoli/la-distopia-europea/</loc>
-    <lastmod>2026-10-05</lastmod>
+    <loc>https://agorariminipodcast.it/puntate/potpurri-di-fine-anno-52307409/</loc>
+    <lastmod>2022-12-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://agorariminipodcast.it/articoli/antisemitismo-o-anti-critica/</loc>
+    <loc>https://agorariminipodcast.it/puntate/dibattiamo-sul-possesso-delle-armi-da-difesa-52273144/</loc>
+    <lastmod>2022-12-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://agorariminipodcast.it/articoli/ultra-stupidita/</loc>
-    <lastmod>2026-09-20</lastmod>
+    <loc>https://agorariminipodcast.it/puntate/agora-rimini-cortocircuito-52252611/</loc>
+    <lastmod>2022-12-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://agorariminipodcast.it/puntate/benvenuti-in-agora-rimini-podcast-52250480/</loc>
+    <lastmod>2022-12-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
