@@ -100,6 +100,38 @@ const legacyRedirectHtml = (canonical) => `<!doctype html>
 <a href="${canonical}">Apri la puntata</a>.</p>
 <script>location.replace(${JSON.stringify(canonical)})</script></body></html>`;
 
+// Temi editoriali verificati sulle descrizioni delle puntate pubblicate.
+// Non sono dichiarati come tag importati da Spreaker.
+const editorialTopics = new Map(Object.entries({
+  "75793653": ["Raccolta differenziata", "Hera e gestione rifiuti", "Politica ambientale", "Proteste in Francia"],
+  "75552602": ["DDL antisemitismo", "Libertà di critica", "Dibattito politico"],
+  "75265070": ["Cambiamento climatico", "Etichette politiche", "Patriottismo", "Attualità italiana"],
+  "73400955": ["Finale di stagione", "Bilancio del podcast", "Attualità e società"],
+  "73164640": ["Fatti di Bologna", "Ipocrisia politica", "Dibattito pubblico"],
+  "72999361": ["Podcast indipendente", "Libertà di opinione", "Confronto con gli ascoltatori"],
+  "72874416": ["Cambiamento climatico", "Dissenso e confronto", "Comunicazione pubblica"],
+  "72729986": ["Informazione sul clima", "Media mainstream", "Comunicazione ambientale"],
+  "72637953": ["Regno Unito", "Grooming gangs", "Informazione e censura"],
+  "72525096": ["Caso Henry Nowak", "Cronaca e informazione", "Indignazione pubblica"]
+}));
+const editorialRelated = new Map(Object.entries({
+  "75552602": [{ title: "Antisemitismo o anti-critica?", url: "/articoli/antisemitismo-o-anti-critica/" }],
+  "75265070": [{ title: "Ultrastupidità", url: "/articoli/ultra-stupidita/" }],
+  "72874416": [{ title: "La Distopia Europea", url: "/articoli/la-distopia-europea/" }]
+}));
+const episodeTopics = (episode, index) => {
+  // Published editorial topic mapping; only the ten newest entries get topic blocks.
+  if (index >= 10) return [];
+  return editorialTopics.get(episode.id) || [];
+};
+const relatedToEpisode = (episode) => (editorialRelated.get(episode.id) || [])
+  .filter((item) => existsSync(join(item.url.slice(1), "index.html")));
+const topicBlock = (topics, related) => !topics.length ? "" : `
+<section class="episode-topics" aria-label="Argomenti trattati">
+  <h2>Argomenti trattati</h2>
+  <ul class="topic-list">${topics.map((topic) => `<li>${escapeHtml(topic)}</li>`).join("")}</ul>
+  ${related.length ? `<p class="related-reading">Approfondisci: ${related.map((item) => `<a href="${item.url}">${escapeHtml(item.title)}</a>`).join(" · ")}</p>` : ""}
+</section>`;
 const shortDescription = (episode) => (episode.description || "Ascolta questa puntata di Agorà Rimini Podcast.").slice(0, 260);
 const json = (value) => JSON.stringify(value).replace(/</g, "\\u003c");
 
@@ -117,6 +149,10 @@ h1{max-width:900px;margin:10px 0 22px;font-size:clamp(42px,7vw,82px);line-height
 .button.alt{color:var(--blue);background:#fff;border:1px solid var(--blue)}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:40px}.card{padding:24px;background:#fff;border:1px solid var(--line);text-decoration:none}
 .card small{color:var(--blue);font-weight:900;text-transform:uppercase}.card h2{margin:10px 0 12px;font-size:25px;line-height:1}.card p{margin:0;color:#52616e;font-size:14px;line-height:1.55}
+.episode-topics{margin:26px 0;padding:20px 24px;border-left:4px solid var(--blue);background:#e9eef2}
+.episode-topics h2{margin:0 0 12px;font-size:22px}.topic-list{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0}
+.topic-list li{padding:7px 11px;border:1px solid rgba(11,87,163,.25);border-radius:4px;background:white;font-size:13px}
+.related-reading{margin:14px 0 0;font-size:14px;line-height:1.6}.related-reading a{font-weight:700;color:var(--blue)}
 footer{padding:32px 20px;text-align:center;color:#60717f;background:#e9eef2;font-size:12px}
 @media(max-width:680px){.wrap{padding-top:42px}.grid{grid-template-columns:1fr}.top span{display:none}.player iframe{height:180px}}
 `;
@@ -138,14 +174,16 @@ const head = ({ title, description, canonical, image, type = "article", ld }) =>
 rmSync(OUTPUT_DIR, { recursive: true, force: true });
 mkdirSync(OUTPUT_DIR, { recursive: true });
 
-for (const episode of episodes) {
+for (const [index, episode] of episodes.entries()) {
   const slug = pageSlug(episode);
+  const topics = episodeTopics(episode, index);
+  const related = relatedToEpisode(episode);
   const canonical = SITE_URL + "/puntate/" + slug + "/";
   const description = shortDescription(episode);
   const published = isoDate(episode.pubDate);
   const ld = {
     "@context": "https://schema.org", "@type": "PodcastEpisode", name: episode.title,
-    description, url: canonical, datePublished: published || undefined,
+    description, url: canonical, keywords: topics.length ? topics.join(", ") : undefined, datePublished: published || undefined,
     duration: durationIso(episode.duration) || undefined,
     image: episode.image || SITE_URL + "/assets/logo.jpg",
     partOfSeries: { "@type": "PodcastSeries", name: "Agorà Rimini Podcast", url: SITE_URL + "/" },
@@ -158,6 +196,7 @@ for (const episode of episodes) {
 <main class="wrap"><p class="kicker">${category(episode)}</p><h1>${escapeHtml(episode.title)}</h1>
 <div class="meta"><span>${escapeHtml(humanDate(episode.pubDate))}</span>${episode.duration ? `<span>Durata: ${escapeHtml(episode.duration)}</span>` : ""}</div>
 ${description ? `<p class="lead">${escapeHtml(description)}</p>` : ""}
+${topicBlock(topics, related)}
 <div class="player"><iframe title="${escapeHtml(episode.title)}" src="https://widget.spreaker.com/player?episode_id=${episode.id}&theme=light&autoplay=false&playlist=false" allow="autoplay" loading="lazy"></iframe></div>
 <div class="actions"><a class="button" href="${escapeHtml(episode.link)}" target="_blank" rel="noopener noreferrer">Ascolta su Spreaker ↗</a><a class="button alt" href="/puntate/">Tutte le puntate</a></div></main>
 <footer>© Agorà Rimini Podcast · Rimini, Italia</footer></body></html>`;
