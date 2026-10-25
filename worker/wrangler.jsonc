@@ -1,7 +1,8 @@
 // Deploy del Worker tramite il repository collegato a Cloudflare Builds.
 {
   "name": "agora-editorial-api",
-  "main": "src/index.js",
+  "main": "src/push-entry.js",
+  "triggers": {"crons":["* * * * *"]},
   "compatibility_date": "2026-09-21",
   "vars": {
     "GITHUB_REPOSITORY": "AgoraRimini/agora-rimini-podcast",
