@@ -154,7 +154,7 @@ const editorialRelated = new Map(Object.entries({
 const episodeTopics = (episode, index) => {
   // Published editorial topic mapping; only the ten newest entries get topic blocks.
   if (index >= 10) return [];
-  return editorialTopics.get(episode.id) || [];
+  return (editorialTopics.get(episode.id) || []).slice(0, 5);
 };
 const relatedToEpisode = (episode) => (editorialRelated.get(episode.id) || [])
   .filter((item) => existsSync(join(item.url.slice(1), "index.html")));
