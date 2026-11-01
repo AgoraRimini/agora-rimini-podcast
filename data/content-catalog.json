@@ -798,6 +798,12 @@
     },
     {
       "type": "song",
+      "id": "cf533fa0-c5d7-4810-83ec-7745b61fb2de",
+      "title": "Anni Strani",
+      "url": "/?song=cf533fa0-c5d7-4810-83ec-7745b61fb2de#musica"
+    },
+    {
+      "type": "song",
       "id": "0716c727-0ccc-4bfe-9a43-a94b1bd1486b",
       "title": "The Great Dictator",
       "url": "/?song=0716c727-0ccc-4bfe-9a43-a94b1bd1486b#musica"
