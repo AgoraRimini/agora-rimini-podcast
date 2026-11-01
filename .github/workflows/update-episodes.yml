@@ -11,7 +11,7 @@ on:
       - ".github/workflows/update-episodes.yml"
       - ".github/workflows/pages.yml"
   schedule:
-    - cron: "17 * * * *"
+    - cron: "17 5 * * *"
 
 permissions:
   contents: write
@@ -23,7 +23,25 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  cadence:
+    runs-on: ubuntu-latest
+    outputs:
+      due: ${{ steps.interval.outputs.due }}
+    steps:
+      - name: Controlla intervallo di 48 ore
+        id: interval
+        run: |
+          # Epoch-day parity maintains 48-hour spacing across month/year boundaries.
+          # Push and manual runs remain available for maintenance and recovery.
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ] || (( ($(date -u +%s) / 86400) % 2 == 0 )); then
+            echo "due=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "due=false" >> "$GITHUB_OUTPUT"
+          fi
+
   generate:
+    needs: cadence
+    if: needs.cadence.outputs.due == 'true'
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
