@@ -96,6 +96,8 @@ jobs:
           python scripts/generate-og.py
           python scripts/validate-social-previews.py
           python scripts/build-article-headers.py
+      - name: Ottimizza copertine per sito e app
+        run: python scripts/optimize-covers.py
       - name: Prepara sito statico
         uses: actions/upload-pages-artifact@v3
         with:

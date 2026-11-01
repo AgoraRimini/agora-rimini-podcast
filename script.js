@@ -107,7 +107,7 @@ if (articleList) {
       articleList.innerHTML = articles.map((article) => `
         <article class="article-card article-card-featured article-card-live">
           <a class="article-card-link" href="${escapeHtml(article.url)}" aria-label="Leggi l'articolo ${escapeHtml(article.title)}">
-            ${article.image ? `<figure class="article-image"><img src="${escapeHtml(article.image)}" alt="${escapeHtml(article.imageAlt || article.title)}"></figure>` : ""}
+            ${article.image ? `<figure class="article-image"><img src="${escapeHtml(article.imageThumbnail || article.image)}" loading="lazy" decoding="async" alt="${escapeHtml(article.imageAlt || article.title)}"></figure>` : ""}
             <div class="card-copy"><span class="tag">${escapeHtml(article.category)} · Editoriale</span><h3>${escapeHtml(article.title)}</h3><p>${escapeHtml(article.subtitle)}</p><small>di ${escapeHtml(article.author)} · ${escapeHtml(article.date)}</small><span class="article-read">Leggi l’articolo <b aria-hidden="true">→</b></span></div>
           </a>
         </article>`).join("");

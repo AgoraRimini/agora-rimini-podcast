@@ -127,7 +127,8 @@ articleForm.addEventListener("submit", async event => {
       relatedContent: relatedItems.map(({ type, id }) => ({ type, id }))
     };
     if (!article.title || !article.subtitle || !article.date || !bodyEditor.textContent.trim() || !article.highlight) throw Error("Completa tutti i campi obbligatori.");
-    const image = imageChoice === "yes" && file ? { base64: await fileToBase64(file), mimeType: file.type } : null;
+    const optimizedImage = imageChoice === "yes" && file ? await window.AgoraImageTools.optimize(file, 1280) : null;
+    const image = optimizedImage ? { base64: await fileToBase64(optimizedImage), mimeType: optimizedImage.type } : null;
     if (editing) await api("/v1/update", { ...editorCredentials, url: editing.url, revision: editing.revision, article, image, imageAction: imageChoice === "keep" ? "keep" : imageChoice === "yes" ? "replace" : "remove" });
     else await api("/v1/publish", { ...editorCredentials, article, image });
     resetEditor();
