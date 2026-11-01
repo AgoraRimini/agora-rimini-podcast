@@ -48,6 +48,8 @@
   <link rel="stylesheet" href="styles.css?v=18">
   <link rel="stylesheet" href="latest-episode.css?v=1">
   <link rel="stylesheet" href="music-player.css?v=1">
+  <link rel="stylesheet" href="/app-download.css?v=1">
+  <script defer src="/app-download.js?v=1"></script>
 </head>
 <body>
   <header class="site-header">
@@ -73,6 +75,18 @@
   </header>
 
   <main>
+    <section class="app-banner" aria-label="Scarica l’app Agorà per Android">
+      <div class="app-banner-inner">
+        <img class="app-android-icon" src="/assets/icons/android-logo-bold.svg" width="58" height="58" alt="">
+        <div class="app-banner-copy"><h2>Agorà, sempre con te.</h2><p>Scarica la nostra app · <strong>Solo per Android</strong></p></div>
+        <div class="app-banner-actions">
+          <a class="app-download-button" href="https://app.agorariminipodcast.it/downloads/agora-rimini-podcast-2.6.1.apk"><img src="/assets/icons/download-simple-bold.svg" width="24" height="24" alt="">Scarica l’app</a>
+          <small>Presto anche su Google Play</small>
+        </div>
+        <button class="app-share-button" type="button" data-app-copy aria-label="Copia il link per condividere l’app" title="Copia il link per condividere l’app"><img src="/assets/icons/share-network-bold.svg" width="24" height="24" alt=""><span>Condividi</span></button>
+        <p class="app-copy-status" data-app-copy-status role="status" aria-live="polite"></p>
+      </div>
+    </section>
     <section id="home" class="hero">
       <div class="hero-art" role="img" aria-label="I tre conduttori di Agorà Rimini Podcast illustrati in stile manga davanti a Rimini"></div>
       <div class="hero-copy">
