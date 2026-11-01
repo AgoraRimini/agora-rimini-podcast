@@ -275,7 +275,8 @@ const articleUrls = articles.filter((article) =>
   lastmod: /^\d{4}-\d{2}-\d{2}$/.test(article.dateISO || "") ? article.dateISO : undefined,
   priority: "0.8", changefreq: "monthly"
 }));
-const now = new Date().toISOString().slice(0, 10);
+// Stable dates avoid commits and deployments when the RSS content is unchanged.
+const now = episodes.map((episode) => isoDate(episode.pubDate)).filter(Boolean).sort().at(-1)?.slice(0, 10) || "2026-01-01";
 const urls = [
   { loc: SITE_URL + "/", priority: "1.0", changefreq: "weekly" },
   { loc: listCanonical, priority: "0.9", changefreq: "weekly" },

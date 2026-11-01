@@ -6,40 +6,68 @@ on:
     branches: [main]
     paths:
       - "scripts/generate-episodes.mjs"
+      - "scripts/validate-episodes.mjs"
+      - "tests/episode-generation.test.cjs"
       - ".github/workflows/update-episodes.yml"
+      - ".github/workflows/pages.yml"
   schedule:
-    - cron: "20 5 * * *"
+    - cron: "17 * * * *"
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: update-episode-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
     steps:
       - name: Scarica il repository
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Configura Node
         uses: actions/setup-node@v4
         with:
           node-version: "22"
 
+      - name: Test di regressione aggiornamento RSS
+        run: node --test tests/episode-generation.test.cjs
+
       - name: Genera pagine e sitemap
         run: node scripts/generate-episodes.mjs
 
+      - name: Verifica archivio e metadati SEO
+        run: node scripts/validate-episodes.mjs
+
       - name: Pubblica gli aggiornamenti
+        id: commit
         run: |
-          git add -A -- puntate sitemap.xml
-          if git diff --cached --quiet -- puntate sitemap.xml; then
+          git add -- puntate sitemap.xml data/episodes.json data/content-catalog.json
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "Nessun aggiornamento."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Aggiorna pagine puntate e sitemap"
-          git push
+          # Preserve concurrent editorial changes; conflicts fail instead of overwriting.
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: generate
+    # Explicit checks also allow recovery/verification without inventing a content change.
+    if: needs.generate.outputs.changed == 'true' || github.event_name != 'schedule'
+    uses: ./.github/workflows/pages.yml
+    with:
+      episode-update: true
