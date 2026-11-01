@@ -27,7 +27,7 @@ function byteRange(value,size){if(!value)return null;const m=/^bytes=(\d*)-(\d*)
 async function media(request,bucket,id,type,origin){
  const entry=await read(bucket,id);if(!entry||entry.track.status!=='published')return json({error:'Brano non disponibile.'},404,origin);
  const objectKey=type==='audio'?entry.track.audioKey:entry.track.coverKey,head=await bucket.head(objectKey);if(!head)return json({error:'File non disponibile.'},404,origin);
- const h=new Headers(headers(origin));head.writeHttpMetadata(h);h.set('ETag',head.httpEtag);h.set('Accept-Ranges','bytes');h.set('Content-Length',head.size);
+ const h=new Headers(headers(origin));head.writeHttpMetadata(h);if(type==='cover')h.set('Cache-Control','public, max-age=86400');h.set('ETag',head.httpEtag);h.set('Accept-Ranges','bytes');h.set('Content-Length',head.size);
  if(request.headers.get('If-None-Match')===head.httpEtag)return new Response(null,{status:304,headers:h});
  let range=null;try{const ifRange=request.headers.get('If-Range');if(!ifRange||ifRange===head.httpEtag)range=byteRange(request.headers.get('Range'),head.size)}catch{h.set('Content-Range',`bytes */${head.size}`);h.delete('Content-Length');return new Response(null,{status:416,headers:h})}
  if(range){h.set('Content-Range',`bytes ${range.offset}-${range.offset+range.length-1}/${head.size}`);h.set('Content-Length',range.length)}
