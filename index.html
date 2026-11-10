@@ -45,16 +45,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=18">
+  <link rel="preload" href="styles-base.css" as="style">
+  <link rel="preload" href="assets/hero-hosts.webp" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=22">
   <link rel="stylesheet" href="latest-episode.css?v=1">
   <link rel="stylesheet" href="music-player.css?v=1">
-  <link rel="stylesheet" href="/app-download.css?v=1">
+  <link rel="stylesheet" href="/app-download.css?v=2">
   <script defer src="/app-download.js?v=1"></script>
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="#home" aria-label="Agorà Rimini Podcast">
-      <img src="assets/logo.jpg" alt="Agorà Rimini Podcast">
+      <img src="assets/logo-small.webp" alt="Agorà Rimini Podcast">
     </a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Apri menu">
       <span></span><span></span><span></span>
@@ -179,7 +181,7 @@
       <div class="article-grid" data-articles-list>
         <article class="article-card article-card-featured article-card-live">
           <a class="article-card-link" href="/articoli/ultra-stupidita/" aria-label="Leggi l'articolo Ultra stupidità">
-            <figure class="article-image"><img src="assets/articles/estrema-destra-1980-2026.jpg" alt="Confronto visivo tra la definizione di estrema destra nel 1980 e nel 2026"></figure>
+            <figure class="article-image"><img src="assets/articles/estrema-destra-1980-2026.jpg" loading="lazy" decoding="async" alt="Confronto visivo tra la definizione di estrema destra nel 1980 e nel 2026"></figure>
             <div class="card-copy"><span class="tag">Editoriale · Società</span><h3>Ultra stupidità</h3><p>Quando un’etichetta smette di descrivere le idee e comincia a sostituirle.</p><small>di Paolo · 20 settembre 2026</small><span class="article-read">Leggi l’articolo <b aria-hidden="true">→</b></span></div>
           </a>
         </article>
@@ -216,11 +218,11 @@
         <div class="music-console">
           <div class="record-crate"><div class="crate-label"><span>Scegli un disco</span><small>Passa sopra per estrarlo · clicca per ascoltarlo</small></div><div id="music-records" class="release-picker" role="group" aria-label="Brani originali di NoPlaceToHide"></div><p id="music-catalog-status" class="music-feedback" role="status">Caricamento dei brani…</p></div>
           <section id="music-direct-stage" class="music-direct-stage" aria-label="Player musicale Agorà" hidden>
-            <div class="music-track-heading"><img id="music-cover" alt="Copertina del brano"><div><span class="music-label">PRODUZIONE ORIGINALE · AUDIO DIRETTO</span><h3 id="music-current-title"></h3><p id="music-current-artist"></p></div><div class="music-meter music-signal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div></div>
+            <div class="music-track-heading"><img id="music-cover" loading="lazy" decoding="async" alt="Copertina del brano"><div><span class="music-label">PRODUZIONE ORIGINALE · AUDIO DIRETTO</span><h3 id="music-current-title"></h3><p id="music-current-artist"></p></div><div class="music-meter music-signal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div></div>
             <div class="music-transport"><button id="music-back" class="music-control" type="button" aria-label="Indietro di 15 secondi">−15s</button><button id="music-toggle" class="music-control music-primary" type="button" aria-label="Riproduci">Ascolta</button><button id="music-forward" class="music-control" type="button" aria-label="Avanti di 15 secondi">+15s</button><div class="music-position"><label class="music-sr" for="music-seek">Posizione nel brano</label><input id="music-seek" type="range" min="0" max="100" step="0.1" value="0"><div class="music-times"><span id="music-elapsed">0:00</span><span id="music-duration">0:00</span></div></div><label class="music-volume">Volume<input id="music-volume" type="range" min="0" max="1" step="0.05" value="1"></label></div>
             <p id="music-description" class="music-track-description"></p><p id="music-playback-status" class="music-feedback" role="status" aria-live="polite"></p>
           </section>
-          <audio id="music-direct-audio" preload="metadata"></audio>
+          <audio id="music-direct-audio" preload="none"></audio>
         </div>
       </div>
     </section>
@@ -258,17 +260,18 @@
 
   <footer id="contatti" class="site-footer">
     <div class="footer-brand footer-brand-panel">
-      <img src="assets/logo.jpg?v=2" alt="Logo Agorà Rimini Podcast">
+      <img src="assets/logo-small.webp" loading="lazy" decoding="async" alt="Logo Agorà Rimini Podcast">
       <div><span>Agorà Rimini Podcast</span><p>I tre folli idealisti.</p></div>
     </div>
     <div class="footer-cta"><p>Hai una storia, un’idea o qualcosa da dire?</p><a href="mailto:agora.rimini@proton.me">Scrivici →</a></div>
     <div class="footer-bottom"><span>© <span id="year"></span> Agorà Rimini Podcast</span><span>Rimini · Italia</span><a href="https://www.spreaker.com/podcast/agora-rimini-podcast--5748998" target="_blank" rel="noreferrer">Spreaker ↗</a></div>
   </footer>
-  <script defer src="https://cdn.embed.ly/player-0.1.0.min.js"></script>
-  <script defer src="script.js?v=13"></script>
-  <script defer src="music-catalog.js?v=3"></script>
-  <script defer src="music-player.js?v=3"></script>
   <script defer src="latest-episode.js?v=1"></script>
+  <script defer src="music-catalog.js?v=3"></script>
+  <script defer src="music-player.js?v=4"></script>
+  <script defer src="quotes.js?v=7"></script>
+  <script defer src="https://cdn.embed.ly/player-0.1.0.min.js"></script>
+  <script defer src="script.js?v=14"></script>
 </body>
 </html>
 

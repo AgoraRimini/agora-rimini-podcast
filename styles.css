@@ -408,7 +408,7 @@
   top:65%;
   z-index:2;
   border-radius:50%;
-  background:#fff url("assets/logo.jpg?v=2") center 54%/145% auto no-repeat;
+  background:#fff url("assets/logo-small.webp") center 54%/145% auto no-repeat;
   clip-path:circle(47% at 50% 50%);
   transform:translateX(-50%) rotate(-2deg);
   opacity:.88;
