@@ -11,13 +11,18 @@
     else body.prepend(related);
     related.style.marginBottom = "1.55em";
   });
+  const links = Array.from(document.querySelectorAll("[data-content-type][data-content-id]"));
+  if (!links.length) return;
+  const articlesRequest = links.some((link) => link.dataset.contentType === "article")
+    ? fetch("/data/articles.json").then((r) => r.ok ? r.json() : [])
+    : [];
   const contentKey = (item) => `${item.type}:${item.id}`;
   const typeName = (type) => ({ episode: "Puntata", article: "Articolo", song: "Canzone" }[type] || "Contenuto");
-  Promise.all([fetch("/data/content-catalog.json").then((r) => r.ok ? r.json() : { items: [] }), fetch("/data/articles.json").then((r) => r.ok ? r.json() : [])]).then(([catalog, articles]) => {
+  Promise.all([fetch("/data/content-catalog.json").then((r) => r.ok ? r.json() : { items: [] }), articlesRequest]).then(([catalog, articles]) => {
     const items = [...(catalog.items || []), ...articles.map((article) => ({ type: "article", id: article.url.split("/")[2], title: article.title, url: article.url }))];
     const index = new Map(items.map((item) => [contentKey(item), item]));
     for (const item of items) if (item.type === "song") for (const alias of item.aliases || []) index.set(`song:${alias}`, item);
-    document.querySelectorAll("[data-content-type][data-content-id]").forEach((element) => {
+    links.forEach((element) => {
       const item = index.get(`${element.dataset.contentType}:${element.dataset.contentId}`);
       if (!item) { element.hidden = true; return; }
       if (element.matches("a")) element.href = item.url;

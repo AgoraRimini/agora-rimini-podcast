@@ -70,9 +70,9 @@ def enhance(source, article):
     block = '<script id="agora-article-schema" type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace("<", "\\u003c") + '</script>'
     source = re.sub(r'<script id="agora-article-schema" type="application/ld\+json">.*?</script>', '', source, flags=re.S)
     source = source.replace('</head>', block + '</head>', 1)
-    source = source.replace('article-header.css?v=1', 'article-header.css?v=2')
+    source = re.sub(r'article-header\.css\?v=[12]\b', 'article-header.css?v=3', source)
     if 'article-header.css' not in source:
-        source = source.replace('</head>', '<link rel="stylesheet" href="/article-header.css?v=2"><script src="/article-share.js?v=1" defer></script></head>', 1)
+        source = source.replace('</head>', '<link rel="stylesheet" href="/article-header.css?v=3"><script src="/article-share.js?v=1" defer></script></head>', 1)
     return source
 
 

@@ -69,38 +69,13 @@ document.addEventListener("keydown", (event) => {
 const year = document.querySelector("#year");
 if (year) year.textContent = new Date().getFullYear();
 
-// quotes.js usa #articoli come riferimento per inserire le citazioni.
-const articlesSection = document.querySelector("#articoli");
-// Il segnaposto serve solo come fallback se la sezione non è presente.
-const thoughtsAnchor = document.querySelector("#pensieri-anchor");
-if (thoughtsAnchor && !articlesSection) {
-  thoughtsAnchor.id = "articoli";
-}
-
-const quotesScript = document.createElement("script");
-quotesScript.src = "quotes.js?v=6";
-quotesScript.onload = () => {
-  if (!articlesSection) document.querySelector("#articoli")?.remove();
-
-  const quotesFixScript = document.createElement("script");
-  quotesFixScript.src = "quotes-fix.js?v=4";
-  document.body.appendChild(quotesFixScript);
-};
-quotesScript.onerror = () => {
-  if (!articlesSection) {
-    const marker = document.querySelector("#articoli");
-    if (marker) marker.id = "pensieri-anchor";
-  }
-};
-document.body.appendChild(quotesScript);
-
 const escapeHtml = (value = "") => value.replace(/[&<>'"]/g, (character) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", "\"": "&quot;"
 }[character]));
 
 const articleList = document.querySelector("[data-articles-list]");
 if (articleList) {
-  fetch("/data/articles.json", { cache: "no-store" })
+  fetch("/data/articles.json", { cache: "no-cache" })
     .then((response) => response.ok ? response.json() : Promise.reject())
     .then((articles) => {
       if (!Array.isArray(articles) || !articles.length) return;

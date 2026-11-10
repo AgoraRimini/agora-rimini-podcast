@@ -1,1 +1,1 @@
-{"private":true,"scripts":{"dev":"python3 scripts/preview-server.py","test":"node --test tests/latest-episode.test.cjs"}}
+{"private":true,"scripts":{"dev":"python3 scripts/preview-server.py","test":"node --test tests/latest-episode.test.cjs tests/music-player.test.cjs"}}
