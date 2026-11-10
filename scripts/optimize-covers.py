@@ -73,13 +73,15 @@ def main():
     article_file.write_text(json.dumps(articles, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     # Change image sources only; keep SEO/social metadata, text, CSS and layout.
     home = ROOT / 'index.html'
-    pages = [home, *(ROOT / 'articoli').glob('*/index.html')]
+    pages = sorted(ROOT.rglob('index.html'))
     for page in pages:
         html = page.read_text(encoding='utf-8')
         def replace_tag(match):
             tag = match.group(0)
-            if page != home:
-                tag = tag.replace('src="../../assets/logo.jpg"', 'src="/assets/logo-small.webp"')
+            tag = re.sub(
+                r'(\bsrc=["\'])(?:\.\./|\./|/)*assets/logo\.jpg(?:\?v=\d+)?(["\'])',
+                lambda match: match[1] + '/assets/logo-small.webp' + match[2], tag,
+            )
             for original, versions in portraits.items():
                 tag = tag.replace(
                     f'src="{original}"',
