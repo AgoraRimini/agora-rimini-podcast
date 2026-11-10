@@ -1,4 +1,4 @@
-@font-face{font-family:AgoraBanner;src:url('/assets/fonts/BarlowCondensed-ExtraBold.ttf') format('truetype');font-weight:800;font-display:swap}
+@font-face{font-family:AgoraBanner;src:url('/assets/fonts/BarlowCondensed-ExtraBold.woff2') format('woff2'), url('/assets/fonts/BarlowCondensed-ExtraBold.ttf') format('truetype');font-weight:800;font-display:swap}
 .app-banner{background:#0b57a3;color:#fff;position:relative}
 .app-banner-inner{max-width:1150px;min-height:96px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:center;gap:28px;position:relative}
 .app-android-icon{flex:none;filter:brightness(0) invert(1)}

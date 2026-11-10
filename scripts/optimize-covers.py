@@ -27,7 +27,7 @@ def download(url):
                 raise
             time.sleep(attempt + 1)
 
-def variants(data, label, widths):
+def variants(data, label, widths, quality=84):
     digest = sha256(data).hexdigest()[:16]
     result = {}
     with Image.open(BytesIO(data)) as original:
@@ -38,7 +38,7 @@ def variants(data, label, widths):
             image.thumbnail((width, width), Image.Resampling.LANCZOS)
             filename = f'{label}-{digest}-{name}.webp'
             destination = OUT / filename
-            image.save(destination, 'WEBP', quality=84, method=6)
+            image.save(destination, 'WEBP', quality=quality, method=6)
             # Verify the file that will actually be published.
             with Image.open(destination) as check:
                 assert check.format == 'WEBP' and max(check.size) <= width
@@ -49,9 +49,14 @@ def variants(data, label, widths):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
+    portraits = {
+        '/assets/authors/' + source.name: variants(
+            source.read_bytes(), 'author-' + source.stem, {'full': 1536, 'compact': 768}, quality=90
+        )
+        for source in sorted((ROOT / 'assets/authors').glob('*.png'))
+    }
     article_file = ROOT / 'data/articles.json'
     articles = json.loads(article_file.read_text(encoding='utf-8'))
-    replacements = {}
     article_images = {}
     for article in articles:
         original = article.get('image', '')
@@ -64,18 +69,33 @@ def main():
         result = variants(source.read_bytes(), 'article-' + slug, {'image': 1280, 'thumbnail': 640})
         article['image'] = result['image']
         article['imageThumbnail'] = result['thumbnail']
-        replacements[original] = result['image']
         article_images[original] = result
     article_file.write_text(json.dumps(articles, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     # Change image sources only; keep SEO/social metadata, text, CSS and layout.
-    pages = [ROOT / 'index.html', *list((ROOT / 'articoli').glob('*/index.html'))]
+    home = ROOT / 'index.html'
+    pages = [home, *(ROOT / 'articoli').glob('*/index.html')]
     for page in pages:
         html = page.read_text(encoding='utf-8')
         def replace_tag(match):
             tag = match.group(0)
-            for original, optimized in replacements.items():
+            if page != home:
+                tag = tag.replace('src="../../assets/logo.jpg"', 'src="/assets/logo-small.webp"')
+            for original, versions in portraits.items():
+                tag = tag.replace(
+                    f'src="{original}"',
+                    f'src="{versions["full"]}" srcset="{versions["compact"]} 512w, {versions["full"]} 1024w" '
+                    'sizes="(max-width: 760px) 44vw, (max-width: 1120px) 52vw, 583px"',
+                )
+            for original, versions in article_images.items():
+                optimized = versions['thumbnail' if page == home else 'image']
                 filename = re.escape(original.lstrip('/'))
-                tag = re.sub(r'(\bsrc=["\'])(?:\.\./|\./|/)*' + filename + r'(["\'])', lambda m: m[1] + optimized + m[2], tag)
+                tag, changed = re.subn(
+                    r'(\bsrc=["\'])(?:\.\./|\./|/)*' + filename + r'(["\'])',
+                    lambda m: m[1] + optimized + m[2], tag
+                )
+                if changed and page != home and not re.search(r'\s(?:width|height)\s*=', tag):
+                    with Image.open(ROOT / optimized.lstrip('/')) as image:
+                        tag = tag[:-1] + f' width="{image.width}" height="{image.height}">'
             return tag
         patched = re.sub(r'<img\b[^>]*>', replace_tag, html, flags=re.I)
         if patched != html:
@@ -89,7 +109,7 @@ def main():
     with ThreadPoolExecutor(max_workers=4) as pool:
         manifest = {'version': 1, 'music': dict(pool.map(music, tracks)), 'articles': article_images}
     (OUT / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f'Ottimizzate {len(replacements)} copertine articoli e {len(tracks)} copertine musicali.')
+    print(f'Ottimizzate {len(article_images)} copertine articoli e {len(tracks)} copertine musicali.')
 
 if __name__ == '__main__':
     main()
