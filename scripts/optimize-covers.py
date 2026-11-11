@@ -1,5 +1,6 @@
 """Build responsive derivatives without deleting or rewriting source images."""
 from concurrent.futures import ThreadPoolExecutor
+from datetime import date
 from hashlib import sha256
 from io import BytesIO
 from pathlib import Path
@@ -13,6 +14,33 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'assets/covers'
 ORIGIN = 'https://agorariminipodcast.it'
 API = 'https://agora-editorial-api.paolo-rocchetti.workers.dev/v1/music'
+ITALIAN_MONTHS = (
+    'gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno',
+    'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre',
+)
+
+def article_date(article):
+    try:
+        return date.fromisoformat(article.get('dateISO') or '').isoformat()
+    except ValueError:
+        pass
+
+    parts = (article.get('date') or '').lower().split()
+    if len(parts) != 3:
+        return ''
+    day, month, year = parts
+    try:
+        return date(int(year), ITALIAN_MONTHS.index(month) + 1, int(day)).isoformat()
+    except ValueError:
+        return ''
+
+def order_articles(articles):
+    # The website, PWA and app consume the same catalogue.
+    for article in articles:
+        published = article_date(article)
+        if published:
+            article['dateISO'] = published
+    articles.sort(key=article_date, reverse=True)
 
 def download(url):
     for attempt in range(3):
@@ -57,6 +85,7 @@ def main():
     }
     article_file = ROOT / 'data/articles.json'
     articles = json.loads(article_file.read_text(encoding='utf-8'))
+    order_articles(articles)
     article_images = {}
     for article in articles:
         original = article.get('image', '')
